@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 
 # sitemap 地址（上线后会自动生成在 /sitemap-index.xml）
-Sitemap: https://www.chinastudytour.com/sitemap-index.xml
+Sitemap: https://china-study-tour.pages.dev/sitemap-index.xml

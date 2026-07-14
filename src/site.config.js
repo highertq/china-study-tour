@@ -15,8 +15,8 @@ export const SITE = {
   description:
     'Join small-group study tours to China. Experience the collision of 5,000 years of civilization and tomorrow’s technology — the Great Wall, Terracotta Warriors, plus robotic factories, AI labs and smart cities. Hong Kong registered company for your peace of mind.',
 
-  // --- 域名（上线前改成真实域名，和 astro.config.mjs 保持一致）---
-  url: 'https://www.chinastudytour.com',
+  // --- 域名（和 astro.config.mjs 保持一致）---
+  url: 'https://china-study-tour.pages.dev',
   locale: 'en', // 目标客户是老外，整站英文
 
   // --- 联系方式（占位，换成真实的）---
