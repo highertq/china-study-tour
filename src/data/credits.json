@@ -64,5 +64,41 @@
     "source": "Wikimedia Commons",
     "description": "File:Shanghai skyline waterfront pudong 5166168 69 70.jpg",
     "license": "CC0"
+  },
+  {
+    "file": "tech-fast-telescope.jpg",
+    "source": "Wikimedia Commons",
+    "description": "File:FastTelescope*8sep2015.jpg",
+    "license": "CC BY-SA 4.0"
+  },
+  {
+    "file": "tech-drone.jpg",
+    "source": "Wikimedia Commons",
+    "description": "File:DJI Phantom Drone (24109503259).jpg",
+    "license": "CC BY 2.0"
+  },
+  {
+    "file": "tech-ev-factory.jpg",
+    "source": "Wikimedia Commons",
+    "description": "File:Architect and engineer (1933) (14595277937).jpg",
+    "license": "No restrictions"
+  },
+  {
+    "file": "tech-self-driving.jpg",
+    "source": "Wikimedia Commons",
+    "description": "File:Waymo self-driving car front view.gk.jpg",
+    "license": "CC BY-SA 4.0"
+  },
+  {
+    "file": "tech-smart-port.jpg",
+    "source": "Wikimedia Commons",
+    "description": "File:Container Crane Mainz Port I.jpg",
+    "license": "Public domain"
+  },
+  {
+    "file": "tech-rocket.jpg",
+    "source": "Wikimedia Commons",
+    "description": "File:The Launch of Long March 3B Rocket.jpg",
+    "license": "Public domain"
   }
 ]

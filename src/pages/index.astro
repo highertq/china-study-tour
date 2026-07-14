@@ -202,7 +202,92 @@ const heroSlides = [
   </section>
 
   {/* ============================================================
-      5. 信誉背书
+      5. 科技冲击专区 —— 具体的、有名的、可查证的中国科技项目
+         这是项目的灵魂：用真实项目让老外"哇"，而不是空话
+      ============================================================ */}
+  <section class="bg-ink-900 text-white py-20 sm:py-28">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-bronze-500 font-medium text-sm uppercase tracking-wider">The future, today</span>
+        <h2 class="font-display text-3xl sm:text-4xl md:text-5xl mt-3">Things you can only see in China</h2>
+        <p class="mt-4 text-white/60">
+          Not concepts. Not renderings. Real projects you can visit, ride, and touch — most travelers have no idea these exist.
+        </p>
+      </div>
+
+      {/* 科技项目卡片网格：每个都是真实存在、有名字、可查证的项目 */}
+      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {[
+          {
+            img: '/images/tours/tech-robotaxi.jpg',
+            tag: 'Autonomous',
+            title: 'Ride a driverless taxi',
+            desc: 'Hail a Robotaxi with no safety driver on public streets. Companies like Pony.ai and WeRide operate paid rides in Beijing, Guangzhou and Shenzhen — something still illegal in most of the West.',
+            stat: 'L4 autonomy',
+          },
+          {
+            img: '/images/tours/tech-drone.jpg',
+            tag: 'Drones',
+            title: 'Inside DJI’s Sky City',
+            desc: '70% of the world’s drones come from one company. Visit DJI’s floating-glass headquarters in Shenzhen, test-fly the latest models, and see where the global drone industry was built.',
+            stat: '70% global share',
+          },
+          {
+            img: '/images/tours/tech-smart-port.jpg',
+            tag: 'Mega-infrastructure',
+            title: 'The largest automated port',
+            desc: 'Yangshan Port moves 40 million containers a year with almost no humans. Watch AI-controlled bridge cranes and driverless trucks orchestrate cargo at a scale nowhere else matches.',
+            stat: '40M containers/yr',
+          },
+          {
+            img: '/images/tours/tech-fast-telescope.jpg',
+            tag: 'Big Science',
+            title: 'FAST — the world’s largest eye',
+            desc: 'A 500-meter radio telescope built into a Guizhou mountain. Bigger than 30 football fields. It listens for pulsars and alien signals at a sensitivity no other instrument can match.',
+            stat: '500m diameter',
+          },
+          {
+            img: '/images/tours/tech-rocket.jpg',
+            tag: 'Space',
+            title: 'Watch a rocket launch',
+            desc: 'Witness a Long March rocket lift off from Wenchang — China’s Cape Canaveral. With timing, you can feel the rumble from the public viewing area as satellites head to orbit.',
+            stat: '50+ launches/yr',
+          },
+          {
+            img: '/images/tours/shenzhen-china-speed.jpg',
+            tag: 'Smart manufacturing',
+            title: 'A car every 76 seconds',
+            desc: 'Step inside Xiaomi’s megafactory, where robotic arms assemble the SU7 electric sedan in a fully automated line. A phone company now builds cars faster than legacy automakers.',
+            stat: '76-sec cycle',
+          },
+        ].map((item) => (
+          <div class="group rounded-2xl overflow-hidden bg-white/5 ring-1 ring-white/10 hover:ring-bronze-500/50 transition-all duration-500 hover:-translate-y-1">
+            <div class="aspect-[16/10] overflow-hidden relative">
+              <img src={item.img} alt={item.title} loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+              <div class="absolute inset-0 bg-gradient-to-t from-ink-900/80 to-transparent"></div>
+              <span class="absolute top-3 left-3 liquid-glass rounded-full px-3 py-1 text-xs font-medium text-white">{item.tag}</span>
+            </div>
+            <div class="p-6">
+              <h3 class="font-display text-xl mb-2">{item.title}</h3>
+              <p class="text-sm text-white/60 leading-relaxed">{item.desc}</p>
+              <div class="mt-4 pt-4 border-t border-white/10 flex items-center justify-between">
+                <span class="font-display text-lg text-bronze-500">{item.stat}</span>
+                <span class="text-xs text-white/40">Real, visitable</span>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-12 text-center">
+        <p class="text-sm text-white/50 mb-5">These are integrated into specific itineraries — see which tour includes what.</p>
+        <Button href="/tours" variant="glassOnDark">See the tours →</Button>
+      </div>
+    </div>
+  </section>
+
+  {/* ============================================================
+      6. 信誉背书
       ============================================================ */}
   <section class="bg-ink-50 py-20 sm:py-28">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 grid gap-12 lg:grid-cols-2 items-center">
