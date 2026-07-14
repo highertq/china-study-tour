@@ -1,0 +1,134 @@
+---
+// =============================================================================
+// 路线详情页 /tours/[slug]
+//
+// 【这是全站最重要的 SEO 页面】
+// 老外搜 "Beijing study tour 7 days" 这类长尾词，目标就是落到这种页面。
+// 所以每个 md 文件里的 seoTitle / seoDescription / itinerary / faqs 都要认真写。
+//
+// getStaticPaths: 把每条 md 路线生成一个静态 HTML 页面
+// =============================================================================
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TourImage from '../../components/TourImage.astro';
+import Button from '../../components/Button.astro';
+import { getCollection } from 'astro:content';
+
+// 1. 收集所有路线，给每条生成一个 URL
+const tours = await getCollection('tours');
+export async function getStaticPaths() {
+  const all = await getCollection('tours');
+  return all.map((tour) => ({
+    params: { slug: tour.slug },
+    props: { tour },
+  }));
+}
+
+// 2. 拿到当前页面对应的路线数据
+const { tour } = Astro.props;
+const { Content } = await tour.render();
+
+// 3. SEO 字段：优先用专门写给 Google 的 seoTitle/seoDescription
+const seoTitle = tour.data.seoTitle || tour.data.title;
+const seoDescription = tour.data.seoDescription;
+---
+
+<BaseLayout title={seoTitle} description={seoDescription}>
+  {/* ===== 顶部 Hero：路线标题 + 关键信息 ===== */}
+  <section class="bg-ink-900 text-white pt-32 sm:pt-36">
+    <div class="mx-auto max-w-5xl px-4 sm:px-6 py-12 sm:py-16">
+      <a href="/tours" class="text-sm text-ink-100/60 hover:text-white mb-5 inline-block transition-colors">← All tours</a>
+
+      <div class="flex flex-wrap gap-2 mb-5">
+        {tour.data.tags.map((tag) => (
+          <span class="rounded-full bg-white/10 px-3 py-1 text-xs font-medium ring-1 ring-white/20">{tag}</span>
+        ))}
+      </div>
+
+      <h1 class="font-display text-4xl sm:text-5xl md:text-6xl leading-[1.1]">{tour.data.title}</h1>
+
+      <div class="mt-6 flex flex-wrap gap-x-8 gap-y-3 text-sm">
+        <div><span class="text-ink-100/50">Duration:</span> <strong>{tour.data.duration} days</strong></div>
+        <div><span class="text-ink-100/50">Cities:</span> <strong>{tour.data.cities}</strong></div>
+        <div><span class="text-ink-100/50">Best for:</span> <strong>{tour.data.bestFor}</strong></div>
+      </div>
+
+      <div class="mt-8 flex flex-wrap items-center gap-4">
+        <span class="font-display text-3xl text-vermilion-500">From ${tour.data.priceFrom}</span>
+        <Button href="/contact" variant="primary">Inquire about this tour →</Button>
+      </div>
+    </div>
+
+    {/* 路线大图：详情页顶部，老外最想看到的视觉 */}
+    {tour.data.heroImage && (
+      <div class="mx-auto max-w-5xl px-4 sm:px-6 pb-12">
+        <div class="aspect-[21/9] overflow-hidden rounded-2xl ring-1 ring-white/10 shadow-2xl">
+          <TourImage src={tour.data.heroImage} alt={tour.data.title} />
+        </div>
+      </div>
+    )}
+  </section>
+
+  <div class="mx-auto max-w-5xl px-4 sm:px-6 py-16 sm:py-20 grid gap-12 lg:grid-cols-[1fr_320px]">
+    {/* ===== 左侧：主体内容（md 正文 + 行程 + FAQ） ===== */}
+    <div>
+      {/* md 正文渲染 */}
+      <div class="prose-tour">
+        <Content />
+      </div>
+
+      {/* ===== 行程表 ===== */}
+      {tour.data.itinerary.length > 0 && (
+        <section class="mt-12">
+          <h2 class="font-display text-3xl text-ink-900 mb-8">Day-by-day itinerary</h2>
+          <ol class="relative border-l-2 border-ink-100 ml-3 space-y-8">
+            {tour.data.itinerary.map((item) => (
+              <li class="ml-6">
+                <span class="absolute -left-[11px] flex h-5 w-5 items-center justify-center rounded-full bg-vermilion-500 text-white text-xs font-bold ring-4 ring-white">
+                  {item.day}
+                </span>
+                <h3 class="font-semibold text-ink-900">Day {item.day}: {item.title}</h3>
+                <p class="mt-1 text-sm text-ink-500 leading-relaxed">{item.details}</p>
+              </li>
+            ))}
+          </ol>
+        </section>
+      )}
+
+      {/* ===== FAQ（SEO 重点：常被 Google 抓成 rich snippet） ===== */}
+      {tour.data.faqs.length > 0 && (
+        <section class="mt-12">
+          <h2 class="font-display text-3xl text-ink-900 mb-8">Frequently asked questions</h2>
+          <div class="space-y-3">
+            {tour.data.faqs.map((faq) => (
+              <details class="group rounded-xl border border-ink-100 bg-white p-5">
+                <summary class="cursor-pointer font-medium text-ink-900 flex items-center justify-between list-none">
+                  {faq.question}
+                  <span class="text-vermilion-500 transition-transform group-open:rotate-45">+</span>
+                </summary>
+                <p class="mt-3 text-sm text-ink-500 leading-relaxed">{faq.answer}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+      )}
+    </div>
+
+    {/* ===== 右侧：固定询盘卡（用户读内容时随时能询盘） ===== */}
+    <aside class="lg:sticky lg:top-24 h-fit">
+      <div class="rounded-2xl border border-ink-100 bg-gradient-to-br from-ink-50 to-white p-6">
+        <h3 class="font-bold text-ink-900 mb-2">Interested in this tour?</h3>
+        <p class="text-sm text-ink-500 mb-5">Tell us your dates and group size. We'll send a tailored quote within 24 hours.</p>
+        <ul class="text-xs text-ink-500 space-y-2 mb-5">
+          <li>✓ Free itinerary customization</li>
+          <li>✓ No deposit to inquire</li>
+          <li>✓ Hong Kong registered company</li>
+        </ul>
+        <Button href="/contact" variant="primary" class="w-full">Get a quote →</Button>
+      </div>
+    </aside>
+  </div>
+</BaseLayout>
+
+<style is:global>
+  /* prose-tour 排版样式已移到全局 global.css，所有页面共用 */
+</style>

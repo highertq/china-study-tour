@@ -1,0 +1,123 @@
+---
+// =============================================================================
+// Header —— 顶部导航
+// 升级版：电影感毛玻璃胶囊导航 + 手机端汉堡菜单（带交错入场动画）
+//
+// ⚠️ 这个 Header 在「首页（深色 Hero 上）」和「内页（白色背景上）」表现不同：
+//   - 首页 Hero 区是深色背景 → 用白色文字 + 液态玻璃胶囊
+//   - 内页是白色背景 → 用墨色文字 + 半透明胶囊
+//   通过 prop `transparent` 控制（首页传 true）
+// =============================================================================
+import { SITE } from '../site.config';
+import Button from './Button.astro';
+
+interface Props {
+  transparent?: boolean; // 首页深色 Hero 上用 true，其他页面用 false
+}
+const { transparent = false } = Astro.props;
+const textClass = transparent ? 'text-white' : 'text-ink-900';
+const logoClass = transparent ? 'text-white' : 'text-ink-900';
+---
+
+<header class:list={["fixed top-0 inset-x-0 z-50 transition-colors duration-500", transparent ? 'bg-transparent' : 'bg-white/85 backdrop-blur-md border-b border-ink-100']}>
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between">
+    {/* LOGO */}
+    <a href="/" class:list={["flex items-center gap-2.5 font-display text-xl sm:text-2xl transition-colors", logoClass]}>
+      <span class="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-vermilion-500 text-white text-lg font-serif shadow-lg shadow-vermilion-500/30">华</span>
+      <span class="italic">{SITE.name}</span>
+    </a>
+
+    {/* 桌面导航：液态玻璃胶囊（仅透明模式显示玻璃效果，否则普通链接） */}
+    <nav class:list={["hidden md:flex items-center gap-1 text-sm font-medium", textClass]}>
+      {transparent ? (
+        <div class="liquid-glass rounded-full px-6 py-2.5 flex items-center gap-6">
+          {SITE.nav.map((item) => (
+            <a href={item.href} class="opacity-90 hover:opacity-100 transition-opacity">{item.label}</a>
+          ))}
+        </div>
+      ) : (
+        <div class="flex items-center gap-8">
+          {SITE.nav.map((item) => (
+            <a href={item.href} class="hover:text-vermilion-600 transition-colors">{item.label}</a>
+          ))}
+        </div>
+      )}
+    </nav>
+
+    {/* CTA 按钮：朱红在深色 Hero 和白色内页背景上都清晰 */}
+    <Button href="/contact" variant="primary" size="sm" class="hidden sm:inline-flex">
+      Plan My Trip
+    </Button>
+
+    {/* 手机端汉堡按钮 */}
+    <button
+      id="mobile-menu-btn"
+      aria-label="Open menu"
+      class:list={["md:hidden inline-flex items-center justify-center w-10 h-10 rounded-full liquid-glass", textClass]}
+    >
+      {/* 两个图标叠加，切换时交叉淡入淡出 + 旋转 */}
+      <svg class="menu-icon open absolute w-5 h-5 transition-all duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      <svg class="menu-icon close absolute w-5 h-5 opacity-0 scale-75 rotate-90 transition-all duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+  </div>
+
+  {/* ===== 手机端全屏菜单（带交错入场动画）===== */}
+  <div id="mobile-menu" class="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm hidden md:!hidden">
+    <div class="flex flex-col items-center justify-center h-full gap-6">
+      {[...SITE.nav, { label: 'Plan My Trip', href: '/contact' }].map((item, i) => (
+        <a
+          href={item.href}
+          class="mobile-link text-white font-display text-3xl"
+          style={`transition-delay: ${100 + i * 50}ms`}
+        >
+          {item.label}
+        </a>
+      ))}
+    </div>
+  </div>
+</header>
+
+<script>
+  // 手机端汉堡菜单交互
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  const openIcon = btn?.querySelector('.menu-icon.open');
+  const closeIcon = btn?.querySelector('.menu-icon.close');
+
+  function toggleMenu(open: boolean) {
+    if (!menu) return;
+    menu.classList.toggle('hidden', !open);
+    menu.classList.toggle('flex', open);
+    // 图标切换
+    openIcon?.classList.toggle('opacity-0', open);
+    openIcon?.classList.toggle('scale-75', open);
+    openIcon?.classList.toggle('rotate-90', open);
+    closeIcon?.classList.toggle('opacity-0', !open);
+    closeIcon?.classList.toggle('scale-75', !open);
+    closeIcon?.classList.toggle('rotate-90', !open);
+    // 链接交错入场
+    menu.querySelectorAll('.mobile-link').forEach((link) => {
+      if (open) {
+        link.classList.remove('translate-y-4', 'opacity-0');
+      } else {
+        link.classList.add('translate-y-4', 'opacity-0');
+      }
+    });
+  }
+
+  btn?.addEventListener('click', () => {
+    const isOpen = !menu?.classList.contains('hidden');
+    toggleMenu(!isOpen);
+  });
+  // 点链接后关闭
+  menu?.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => toggleMenu(false)));
+</script>
+
+<style>
+  .mobile-link {
+    opacity: 0;
+    transform: translateY(1rem);
+    transition: opacity 500ms cubic-bezier(0.4, 0, 0.2, 1),
+                transform 500ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+</style>

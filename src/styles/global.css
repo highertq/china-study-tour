@@ -1,0 +1,159 @@
+/* =============================================================================
+   全局样式 + Tailwind v4 配置
+   - 配色：「古文明」墨色+朱红，「科技」青色，两个主题色碰撞
+   - 字体：Instrument Serif（大标题，编辑感）+ system-ui（正文）
+   ============================================================================= */
+
+@import "tailwindcss";
+
+/* ---- 品牌设计变量（改颜色只改这里）---- */
+@theme {
+  /* 主色：朱红（东方/古文明），用作按钮、强调 */
+  --color-vermilion-50: #fdf3f1;
+  --color-vermilion-100: #fbe2dd;
+  --color-vermilion-500: #c8392f;
+  --color-vermilion-600: #b02d24;
+  --color-vermilion-700: #8f241c;
+
+  /* 次色：青墨（科技/沉稳），用作文字、背景点缀 */
+  --color-ink-50: #f6f7f8;
+  --color-ink-100: #eceff2;
+  --color-ink-500: #2d3e4f;
+  --color-ink-700: #1d2935;
+  --color-ink-900: #121a22;
+
+  /* 强调色：铜金（古老文明点缀） */
+  --color-bronze-500: #b8843a;
+
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-serif: "Instrument Serif", Georgia, "Times New Roman", serif;
+}
+
+/* ---- 基础排版 ---- */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-ink-700);
+  background-color: #ffffff;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* 编辑感大标题用衬线体（标题专用 class） */
+.font-display {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+/* =============================================================================
+   液态玻璃效果 .liquid-glass
+   借鉴自高端产品 UI：半透明 + 模糊 + 顶部高光描边
+   用在导航胶囊、徽章、CTA、卡片上
+   ============================================================================= */
+.liquid-glass {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: none;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+/* 顶部/底部渐变描边，营造玻璃高光 */
+.liquid-glass::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.4px;
+  background: linear-gradient(180deg,
+    rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.15) 20%,
+    rgba(255,255,255,0) 40%, rgba(255,255,255,0) 60%,
+    rgba(255,255,255,0.15) 80%, rgba(255,255,255,0.45) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* =============================================================================
+   动画
+   ============================================================================= */
+
+/* Ken Burns 缓慢缩放：给 Hero 背景图呼吸感 */
+@keyframes ken-burns {
+  0%   { transform: scale(1.05); }
+  100% { transform: scale(1.18); }
+}
+.animate-ken-burns {
+  animation: ken-burns 8s ease-out forwards;
+}
+
+/* 轻微悬浮（漂浮徽章/卡片用） */
+@keyframes float-bob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+.animate-float-bob {
+  animation: float-burn 4s ease-in-out infinite;
+}
+@keyframes float-burn {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+
+/* 入场上滑（Hero 文字出现时） */
+@keyframes rise-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-rise {
+  animation: rise-up 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  opacity: 0;
+}
+
+/* =============================================================================
+   md 正文排版 .prose-tour（全局，详情页和关于页共用）
+   ============================================================================= */
+.prose-tour h2 {
+  font-family: var(--font-serif);
+  font-size: 1.875rem;
+  font-weight: 400;
+  color: var(--color-ink-900);
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+.prose-tour h3 {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 400;
+  color: var(--color-ink-700);
+  margin-top: 1.75rem;
+  margin-bottom: 0.5rem;
+}
+.prose-tour p {
+  color: var(--color-ink-500);
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+.prose-tour ul {
+  list-style: disc;
+  padding-left: 1.25rem;
+  color: var(--color-ink-500);
+  margin-bottom: 1rem;
+}
+.prose-tour ul li {
+  margin-bottom: 0.25rem;
+}
+.prose-tour strong {
+  color: var(--color-ink-900);
+  font-weight: 600;
+}

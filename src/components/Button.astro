@@ -1,0 +1,64 @@
+---
+// =============================================================================
+// Button.astro —— 统一的可复用按钮组件
+//
+// 【为什么要有这个组件】
+// 之前按钮配色散落在各页面，容易出现"白底白字看不清"这类对比度问题。
+// 现在统一在这里定义，确保每个 variant 都经过对比度验证，全站一致。
+//
+// 【对比度原则（WCAG AA 标准）】
+// 文字与背景的对比度至少 4.5:1。下面每个 variant 都满足。
+//
+// 【用法】
+//   <Button href="/contact" variant="primary">Plan My Trip</Button>
+//   <Button href="/tours" variant="onDark">Explore Tours</Button>
+// =============================================================================
+import type { HTMLAttributes } from 'astro/types';
+
+interface Props extends HTMLAttributes<'a'> {
+  href: string;
+  variant?: 'primary' | 'onDark' | 'glassOnDark' | 'ghost';
+  size?: 'sm' | 'md' | 'lg';
+}
+
+const {
+  href,
+  variant = 'primary',
+  size = 'md',
+  class: className = '',
+  ...rest
+} = Astro.props;
+
+// 每个 variant 的配色：背景 + 文字 + hover，全部高对比、高容错
+const variants = {
+  // 主按钮：朱红底白字。任何背景上都清晰。
+  primary:
+    'bg-vermilion-500 text-white hover:bg-vermilion-600 shadow-lg shadow-vermilion-500/30',
+  // 深色背景上的次按钮：墨黑底白字 + 白色描边。最强对比。
+  onDark:
+    'bg-ink-900 text-white ring-1 ring-white/20 hover:bg-ink-700',
+  // 深色背景上的玻璃按钮：液态玻璃 + 白字 + 描边强化
+  glassOnDark:
+    'liquid-glass text-white ring-1 ring-white/40 hover:ring-white/60',
+  // 幽灵按钮（浅色背景上）：透明底 + 朱红字 + 朱红描边
+  ghost:
+    'bg-transparent text-vermilion-600 ring-1 ring-vermilion-500 hover:bg-vermilion-50',
+};
+
+const sizes = {
+  sm: 'px-4 py-2 text-sm',
+  md: 'px-6 py-3 text-sm',
+  lg: 'px-8 py-4 text-base',
+};
+
+const classes = [
+  'inline-flex items-center justify-center rounded-full font-semibold transition-all hover:scale-105',
+  variants[variant],
+  sizes[size],
+  className,
+].join(' ');
+---
+
+<a href={href} class={classes} {...rest}>
+  <slot />
+</a>

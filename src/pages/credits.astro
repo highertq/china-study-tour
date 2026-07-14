@@ -1,0 +1,68 @@
+---
+// =============================================================================
+// 图片来源页 /credits —— 法律合规页
+//
+// 【为什么需要这个页面】
+// 我们使用的图片来自 Wikimedia Commons，部分协议（CC-BY-SA / CC-BY）要求署名。
+// 这是国际通行的做法，也是给海外客户展示「我们做事规范」的一部分。
+// =============================================================================
+import BaseLayout from '../layouts/BaseLayout.astro';
+import credits from '../data/credits.json';
+---
+
+<BaseLayout
+  title="Image Credits"
+  description="Image credits and licensing information for all photographs used on this site."
+  noindex={true}
+>
+  <section class="bg-ink-900 text-white py-16">
+    <div class="mx-auto max-w-4xl px-4">
+      <h1 class="text-4xl md:text-5xl font-bold">Image credits</h1>
+      <p class="mt-4 text-ink-100/70 max-w-2xl">
+        We respect copyright. All photographs on this site come from freely licensed sources,
+        primarily Wikimedia Commons. Full attribution below.
+      </p>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-4xl px-4 py-16">
+    <div class="rounded-2xl border border-ink-100 overflow-hidden">
+      <table class="w-full text-sm">
+        <thead class="bg-ink-50 text-ink-700">
+          <tr>
+            <th class="text-left px-4 py-3 font-semibold">Image</th>
+            <th class="text-left px-4 py-3 font-semibold">Source & license</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-ink-100">
+          {credits.map((c) => (
+            <tr class="hover:bg-ink-50/50">
+              <td class="px-4 py-3 text-ink-900 font-mono text-xs">{c.file}</td>
+              <td class="px-4 py-3 text-ink-500">
+                <div>{c.description}</div>
+                <div class="text-xs mt-1">
+                  <span class="inline-block rounded bg-vermilion-50 text-vermilion-700 px-1.5 py-0.5 font-medium">{c.license}</span>
+                  <span class="ml-2">via {c.source}</span>
+                </div>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mt-8 text-sm text-ink-500 leading-relaxed">
+      <p>
+        Most images on this site are licensed under
+        <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="text-vermilion-600 hover:underline">CC BY-SA</a>,
+        <a href="https://creativecommons.org/publicdomain/zero/1.0/" class="text-vermilion-600 hover:underline">CC0</a>,
+        or are in the public domain. Where attribution is required, it is listed above.
+      </p>
+      <p class="mt-3">
+        If you believe any image is incorrectly attributed or licensed, please contact us at
+        <a href="mailto:legal@chinastudytour.com" class="text-vermilion-600 hover:underline">legal@chinastudytour.com</a>
+        and we will address it immediately.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

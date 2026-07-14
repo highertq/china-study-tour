@@ -1,0 +1,32 @@
+---
+// =============================================================================
+// TourImage —— 统一的路线图片渲染组件
+// 逻辑：有图片路径就显示图片，没有就显示渐变占位符（不报错）
+// 带有 SEO 必备的 alt 属性（用路线名填充）和懒加载
+// =============================================================================
+interface Props {
+  src?: string;          // 图片路径，如 /images/tours/beijing.jpg
+  alt: string;           // alt 文字（SEO 重要，用路线名/关键词）
+  class?: string;        // 样式类（两种写法都支持）
+  className?: string;    // 同上，兼容 React 习惯写法
+  rounded?: boolean;     // 是否圆角
+}
+
+const { src, alt, class: classFromClass = '', className = '', rounded = false } = Astro.props;
+const extraClass = classFromClass || className;
+const roundClass = rounded ? 'rounded-2xl' : '';
+---
+
+{src ? (
+  <img
+    src={src}
+    alt={alt}
+    loading="lazy"           /* 懒加载：滚到才加载，提升页面打开速度，SEO 加分 */
+    decoding="async"
+    class={`w-full h-full object-cover ${roundClass} ${extraClass}`}
+  />
+) : (
+  <div class={`w-full h-full bg-gradient-to-br from-ink-100 to-ink-500 flex items-center justify-center text-white/40 text-sm ${roundClass} ${extraClass}`}>
+    Tour image
+  </div>
+)}

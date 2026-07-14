@@ -1,0 +1,72 @@
+---
+// =============================================================================
+// BaseLayout —— 所有页面的公共骨架（HTML <head> + Header + Footer）
+//
+// 【SEO 是这个项目的命脉，所以 head 里的 meta 是重点】
+// 每个页面传 props 进来：title / description / image，会注入到 <head> 里
+// Google 抓取你的页面时，看的就是这些 meta。
+// =============================================================================
+
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE } from '../site.config';
+
+// 接收每个页面传入的 props，带默认值
+const {
+  title,
+  description = SITE.description,
+  image = '/og-default.jpg', // 社交分享时的预览图（后面再做）
+  noindex = false, // 临时不想被收录的页面设 true
+  hero = false, // 首页用：跳过内置 Header（首页自己渲染透明版 Header）
+} = Astro.props;
+
+// 拼接完整标题，比如 "About Us | China Study Tour"
+const fullTitle = title ? `${title} | ${SITE.name}` : `${SITE.name} — ${SITE.tagline}`;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const ogImage = new URL(image, Astro.site).href;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    {/* ---- 核心 SEO：title / description / canonical ---- */}
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex,nofollow" />}
+
+    {/* ---- Open Graph：分享到 Facebook / 微信 / LinkedIn 的预览卡 ---- */}
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content="en_US" />
+
+    {/* ---- Twitter 卡片 ---- */}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    {/* 字体：Instrument Serif（大标题衬线体）+ Inter（正文） */}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  </head>
+
+  <body>
+    {/* hero=true 的页面（首页）自己渲染透明 Header 和 Footer；其他页面用默认的 */}
+    {!hero && <Header />}
+    <main>
+      <slot />
+    </main>
+    {!hero && <Footer />}
+  </body>
+</html>

@@ -1,0 +1,68 @@
+---
+// =============================================================================
+// About 页 /about
+//
+// 【作用】解决信任问题。老外看完路线后，会来这里看"这公司靠谱吗"
+// 重点突出：香港公司主体 + 内地旅行社合作 + 你的科创背景背书
+// =============================================================================
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/Button.astro';
+import { SITE } from '../site.config';
+---
+
+<BaseLayout
+  title="About Us"
+  description="China Study Tour is a Hong Kong registered company partnering with licensed mainland travel agencies. We help international travelers experience both ancient China and its technological future."
+>
+  {/* 页头 */}
+  <section class="bg-ink-900 text-white pt-36 pb-16 sm:pt-44 sm:pb-20">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6">
+      <span class="text-vermilion-500 font-medium text-sm uppercase tracking-wider">About us</span>
+      <h1 class="font-display text-4xl sm:text-5xl md:text-6xl mt-4 leading-[1.1]">Built for travelers curious about the real China</h1>
+      <p class="mt-5 text-lg text-ink-100/70 max-w-2xl">
+        We are a Hong Kong based team on a mission to show international travelers both sides of China — its 5,000-year-old civilization and its breathtaking technological leap.
+      </p>
+    </div>
+  </section>
+
+  {/* 故事 */}
+  <section class="mx-auto max-w-3xl px-4 sm:px-6 py-16 sm:py-24">
+    <div class="prose-tour">
+      <h2>Why we started this</h2>
+      <p>
+        Most international travelers only see one version of China: either the ancient temples and the Great Wall, or headlines about technology. We believed the real story is the <strong>collision</strong> of the two — and that the best way to understand modern China is to experience both in a single trip.
+      </p>
+      <p>
+        We also saw how hard it is for foreigners to travel in China: WeChat Pay, Didi, language barriers, blocked apps. So we built a service that removes every piece of that friction — starting with a free pre-trip Chinese course, ending with a 24/7 English support line.
+      </p>
+    </div>
+  </section>
+
+  {/* 信誉背书三件套 */}
+  <section class="bg-ink-50 py-16">
+    <div class="mx-auto max-w-5xl px-4 grid gap-8 md:grid-cols-3">
+      <div class="rounded-2xl bg-white p-6 border border-ink-100">
+        <div class="text-3xl mb-3">🇭🇰</div>
+        <h3 class="font-bold text-ink-900 mb-2">Hong Kong registered</h3>
+        <p class="text-sm text-ink-500">We operate under Hong Kong's transparent business framework — giving international travelers legal and financial peace of mind.</p>
+        <p class="text-xs text-ink-500 mt-3">{SITE.address.line1}, {SITE.address.line2}</p>
+      </div>
+      <div class="rounded-2xl bg-white p-6 border border-ink-100">
+        <div class="text-3xl mb-3">🤝</div>
+        <h3 class="font-bold text-ink-900 mb-2">Licensed mainland partners</h3>
+        <p class="text-sm text-ink-500">All on-the-ground operations inside mainland China are run by licensed, insured travel agencies we've personally vetted.</p>
+      </div>
+      <div class="rounded-2xl bg-white p-6 border border-ink-100">
+        <div class="text-3xl mb-3">🏆</div>
+        <h3 class="font-bold text-ink-900 mb-2">STEM & education background</h3>
+        <p class="text-sm text-ink-500">Our team comes from science, technology and education — not just tourism. That's why our tech visits are real, not tourist traps.</p>
+      </div>
+    </div>
+  </section>
+
+  {/* CTA */}
+  <section class="mx-auto max-w-4xl px-4 py-16 text-center">
+    <h2 class="text-2xl md:text-3xl font-bold text-ink-900 mb-4">Have questions before booking?</h2>
+    <Button href="/contact" variant="primary" size="lg">Get in touch →</Button>
+  </section>
+</BaseLayout>

@@ -1,0 +1,49 @@
+---
+// =============================================================================
+// Footer —— 页脚
+// 放公司信息（香港地址给信誉度）、快速链接、联系方式
+// =============================================================================
+import { SITE } from '../site.config';
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-ink-900 text-ink-100 mt-24">
+  <div class="mx-auto max-w-6xl px-4 py-12 grid gap-10 md:grid-cols-3">
+    {/* 公司简介 */}
+    <div>
+      <div class="flex items-center gap-2 font-bold text-white mb-3">
+        <span class="inline-flex h-8 w-8 items-center justify-center rounded bg-vermilion-500 text-white font-serif">{SITE.name.charAt(0)}</span>
+        {SITE.name}
+      </div>
+      <p class="text-sm leading-relaxed text-ink-100/70">{SITE.tagline}.</p>
+    </div>
+
+    {/* 香港公司信息 —— 给海外客户的信誉背书 */}
+    <div>
+      <h3 class="text-white font-semibold mb-3 text-sm uppercase tracking-wide">Hong Kong Office</h3>
+      <address class="not-italic text-sm text-ink-100/70 leading-relaxed">
+        {SITE.address.line1}<br />
+        {SITE.address.line2}
+      </address>
+    </div>
+
+    {/* 联系方式 */}
+    <div>
+      <h3 class="text-white font-semibold mb-3 text-sm uppercase tracking-wide">Get in Touch</h3>
+      <ul class="text-sm space-y-2 text-ink-100/70">
+        <li><a href={`mailto:${SITE.email}`} class="hover:text-white">{SITE.email}</a></li>
+        <li>WhatsApp / WeChat: {SITE.whatsapp}</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="border-t border-white/10">
+    <div class="mx-auto max-w-6xl px-4 py-5 text-xs text-ink-100/50 flex flex-col sm:flex-row gap-2 justify-between items-center">
+      <span>© {year} {SITE.name}. Hong Kong SAR, China.</span>
+      <div class="flex gap-4">
+        <a href="/credits" class="hover:text-white">Image credits</a>
+        <span>Licensed travel service partner in mainland China.</span>
+      </div>
+    </div>
+  </div>
+</footer>
