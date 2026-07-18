@@ -8,10 +8,10 @@ export const SITE = {
   // 品牌：China Crossroads（中国十字路口）—— 古老文明与未来科技的交汇点
   name: 'China Crossroads',
   // 一句话价值主张（首页 Hero 也会用到）。这是你所有 SEO 内容的「锚点」。
-  tagline: 'China, where ancient and future meet',
+  tagline: 'A deeper way into China',
   // 25-30 字内的副标题，解释你具体做什么
   subtitle:
-    'Private China journeys where 5,000 years of civilization collide with tomorrow’s technology — designed for curious international travelers.',
+    'Private China journeys where ancient wonders collide with tomorrow’s technology — planned by people who live here, with access to the factories, labs, and local hosts you cannot easily arrange from abroad.',
   description:
     'China Crossroads designs private China journeys that pair ancient wonders with the technology of tomorrow. The Great Wall and robot factories, the Terracotta Army and driverless taxis, all in one trip. Hong Kong registered, English-speaking guides, transparent pricing.',
 
