@@ -21,7 +21,7 @@ const {
   hero = false, // 首页用：跳过内置 Header（首页自己渲染透明版 Header）
 } = Astro.props;
 
-// 拼接完整标题，比如 "About Us | China Study Tour"
+// 拼接完整标题，比如 "About Us | China Crossroads"
 const fullTitle = title ? `${title} | ${SITE.name}` : `${SITE.name} — ${SITE.tagline}`;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const ogImage = new URL(image, Astro.site).href;

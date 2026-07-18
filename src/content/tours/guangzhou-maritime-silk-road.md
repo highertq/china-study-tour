@@ -8,7 +8,7 @@ cities: "Guangzhou"
 priceFrom: 1980
 bestFor: "Adults · Families"
 tags: ["ancient", "tech", "culture", "family"]
-category: ["ancient", "family"]
+category: ["journeys"]
 featured: false
 heroImage: /images/tours/guangzhou-maritime-silk-road.jpg
 cardImage: /images/tours/guangzhou-maritime-silk-road.jpg

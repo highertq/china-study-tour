@@ -8,7 +8,7 @@ cities: "Hangzhou"
 priceFrom: 1780
 bestFor: "Adults · Families"
 tags: ["ancient", "tech", "culture", "nature"]
-category: ["ancient", "family"]
+category: ["journeys"]
 featured: false
 heroImage: /images/tours/hangzhou-silk-alibaba.jpg
 cardImage: /images/tours/hangzhou-silk-alibaba.jpg

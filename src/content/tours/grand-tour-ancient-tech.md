@@ -8,7 +8,7 @@ cities: "Beijing · Xi'an · Shanghai"
 priceFrom: 4880
 bestFor: "Families · Adults · First-timers"
 tags: ["ancient", "tech", "culture", "family"]
-category: ["ancient", "tech", "custom", "family"]
+category: ["journeys"]
 featured: true
 heroImage: /images/tours/grand-tour-ancient-tech.jpg
 cardImage: /images/tours/grand-tour-ancient-tech.jpg

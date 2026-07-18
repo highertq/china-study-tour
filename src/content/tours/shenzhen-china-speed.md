@@ -8,7 +8,7 @@ cities: "Shenzhen"
 priceFrom: 1680
 bestFor: "Adults · Professionals"
 tags: ["tech", "modern", "professional"]
-category: ["tech", "custom"]
+category: ["journeys"]
 featured: true
 heroImage: /images/tours/shenzhen-china-speed.jpg
 cardImage: /images/tours/shenzhen-china-speed.jpg

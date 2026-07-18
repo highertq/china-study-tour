@@ -5,22 +5,22 @@
 
 export const SITE = {
   // --- 基础信息 ---
-  name: 'China Study Tour',
+  // 品牌：China Crossroads（中国十字路口）—— 古老文明与未来科技的交汇点
+  name: 'China Crossroads',
   // 一句话价值主张（首页 Hero 也会用到）。这是你所有 SEO 内容的「锚点」。
-  tagline:
-    'Travel China where ancient civilization meets cutting-edge technology',
+  tagline: 'China, where ancient and future meet',
   // 25-30 字内的副标题，解释你具体做什么
   subtitle:
-    'Small-group study tours for international travelers — from ancient wonders to futuristic cities, with a pre-trip Chinese starter course.',
+    'Private China journeys where 5,000 years of civilization collide with tomorrow’s technology — designed for curious international travelers.',
   description:
-    'Join small-group study tours to China. Experience the collision of 5,000 years of civilization and tomorrow’s technology — the Great Wall, Terracotta Warriors, plus robotic factories, AI labs and smart cities. Hong Kong registered company for your peace of mind.',
+    'China Crossroads designs private China journeys that pair ancient wonders with the technology of tomorrow. The Great Wall and robot factories, the Terracotta Army and driverless taxis, all in one trip. Hong Kong registered, English-speaking guides, transparent pricing.',
 
   // --- 域名（和 astro.config.mjs 保持一致）---
   url: 'https://china-study-tour.pages.dev',
   locale: 'en', // 目标客户是老外，整站英文
 
   // --- 联系方式（占位，上线前换成真实的）---
-  email: 'hello@chinastudytour.com',
+  email: 'hello@chinacrossroads.com',
   whatsapp: '+852-0000-0000',   // 香港号码更可信
   wechat: 'ChinaStudyTour',     // 微信号
   // 香港注册地址（给老外信誉度用的，上线前换成真实办公地址）
@@ -35,21 +35,21 @@ export const SITE = {
   // WeChat：华人客户 / 已在华老外
   contactChannels: [
     { id: 'whatsapp', label: 'WhatsApp', handle: '+852-0000-0000', note: 'Quick questions, reply within hours' },
-    { id: 'email', label: 'Email', handle: 'hello@chinastudytour.com', note: 'Detailed inquiries & itineraries' },
+    { id: 'email', label: 'Email', handle: 'hello@chinacrossroads.com', note: 'Detailed inquiries & itineraries' },
     { id: 'wechat', label: 'WeChat', handle: 'ChinaStudyTour', note: 'For Chinese speakers & in-country travelers' },
   ],
 
   // --- 导航栏 ---
-  // Tours 是带子菜单的下拉（hover 展开 4 个分类），其他是普通链接
+  // Tours 是带子菜单的下拉（hover 展开 4 个服务形态分类），其他是普通链接
   nav: [
     {
       label: 'Tours',
       href: '/tours',
       children: [
-        { label: 'Tech Deep Dives', href: '/tours/tech', desc: 'Robotaxis, megafactories, ports, rockets' },
-        { label: 'Ancient Wonders', href: '/tours/ancient', desc: 'Great Wall, Terracotta Army, Silk Road' },
-        { label: 'Family Tours', href: '/tours/family', desc: 'Pandas, science museums, kid-paced' },
-        { label: 'Custom Journeys', href: '/tours/custom', desc: 'Multi-city grand tours & bespoke' },
+        { label: 'Private Journeys', href: '/tours/journeys', desc: 'Multi-day China, built around you' },
+        { label: 'Local Experiences', href: '/tours/experiences', desc: 'Half-day & full-day city immersions' },
+        { label: 'Business Visits', href: '/tours/business', desc: 'On-the-ground support for business' },
+        { label: 'Special-Purpose Trips', href: '/tours/special', desc: 'Roots, creative shoots, milestones' },
       ],
     },
     { label: 'How It Works', href: '/how-it-works' },

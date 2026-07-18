@@ -2,9 +2,10 @@
 // =============================================================================
 // 分类落地页 /tours/[category]
 //
-// 动态路由：从 CATEGORIES 生成 4 个页面（tech/ancient/family/custom）
-// 每页：分类标题 + 定位文案 + 该分类路线卡片网格
-// 底部：横向引导到其他 3 个分类（补竞品没做的弱点）
+// 两种渲染模式（根据分类是否有真实路线）：
+//   - hasTours=true（Private Journeys）：展示路线网格 + 内部主题筛选 chip
+//   - hasTours=false（Experiences/Business/Special）：渲染询盘落地页内容
+//     （学竞品做法：讲清楚能做什么，引导询盘，而不是空网格）
 // =============================================================================
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import TourCard from '../../components/TourCard.astro';
@@ -20,17 +21,80 @@ export async function getStaticPaths() {
   }));
 }
 
-// 2. 拿到当前分类 + 该分类的路线 + 其他分类（做底部横向引导）
 const { categoryId } = Astro.props;
-const current = await getCategoryWithTours(categoryId);
+const current = CATEGORIES.find((c) => c.id === categoryId);
 const allCategories = await getAllCategories();
+const categoryWithData = await getCategoryWithTours(categoryId);
 const others = allCategories.filter((c) => c.id !== categoryId);
 
-// 兜底：万一 categoryId 非法（不该发生），返回 404
 if (!current) return Astro.redirect('/404');
 
-const seoTitle = `${current.name} — China Study Tours`;
-const seoDescription = `${current.description} Browse ${current.count} curated ${current.name.toLowerCase()} itineraries. English-speaking guides, Hong Kong registered company.`;
+const seoTitle = `${current.name} — China Crossroads`;
+const seoDescription = current.description;
+
+// Private Journeys 内部主题筛选 chip（用 tags 聚合，不浪费之前的分类工作）
+const themeTags = ['tech', 'ancient', 'family', 'culture', 'nature', 'modern'];
+const journeysTours = categoryWithData?.tours || [];
+
+// 无路线分类的内容配置（学竞品的询盘落地页结构）
+const landingContent = {
+  experiences: {
+    sections: [
+      {
+        title: 'Food, markets & everyday streets',
+        desc: 'Guided walks through the wet markets, breakfast stalls, and back-alley noodle shops that locals actually use. Eat what residents eat, where they eat it.',
+      },
+      {
+        title: 'Neighborhood discoveries',
+        desc: 'Half-day immersions in a single district — hutongs in Beijing, the French Concession in Shanghai, the art villages of Shenzhen. See the city like a local sees it.',
+      },
+      {
+        title: 'Single-theme deep dives',
+        desc: 'A morning on calligraphy, an afternoon on tea, an evening on regional opera. Light-touch but substantive, led by a local host.',
+      },
+    ],
+    closing: 'Currently arranged by request in Beijing, Shanghai, Shenzhen, Chengdu, and Hangzhou. Tell us where you\'ll be and what you\'re curious about.',
+  },
+  business: {
+    sections: [
+      {
+        title: 'Meetings & company visits',
+        desc: 'Factory tours, showroom visits, partner meetings. We coordinate scheduling, transport, and on-site interpretation so you can focus on the conversation.',
+      },
+      {
+        title: 'Trade fairs & sourcing',
+        desc: 'Canton Fair (Guangzhou), Yiwu wholesale markets, Shenzhen electronics sourcing. We handle the logistics of moving through high-volume trade environments efficiently.',
+      },
+      {
+        title: 'Interpretation & coordination',
+        desc: 'Professional interpreters (technical and business), drivers, and a coordinator who keeps your schedule moving. We bridge the language and culture gap on the ground.',
+      },
+      {
+        title: 'Business meals & relationship time',
+        desc: 'Restaurants chosen for the right tone, menus arranged in advance, cultural context for toasts and seating. We make the meal work as hard as the meeting.',
+      },
+    ],
+    closing: 'Tell us your city, timing, industry, group size, and what kind of schedule or local support you need. We are not a sourcing agent, legal firm, or investment adviser — but we coordinate the travel-side logistics of business visits end to end.',
+  },
+  special: {
+    sections: [
+      {
+        title: 'Family return & roots visits',
+        desc: 'For adoptees, diaspora families, and adult children returning to a parent\'s hometown. We help locate places, arrange translation, and pace the emotional weight of these trips.',
+      },
+      {
+        title: 'Creative & portrait journeys',
+        desc: 'Photography expeditions, engagement shoots in iconic settings, film-location visits. We handle permits, locations, and the logistics so you can create.',
+      },
+      {
+        title: 'Milestones & personal occasions',
+        desc: 'Anniversaries, birthdays, family reunions held in the country your family came from. Venues, meals, ceremonies, and memories arranged with care.',
+      },
+    ],
+    closing: 'Tell us the personal reason behind your China trip. We\'ll shape a realistic plan around it — and be honest about what we can and cannot help arrange.',
+  },
+};
+const landing = landingContent[categoryId];
 ---
 
 <BaseLayout title={seoTitle} description={seoDescription}>
@@ -41,42 +105,68 @@ const seoDescription = `${current.description} Browse ${current.count} curated $
       <span class="block text-bronze-500 font-medium text-sm uppercase tracking-wider mb-3">{current.tagline}</span>
       <h1 class="font-display text-4xl sm:text-5xl md:text-6xl">{current.name}</h1>
       <p class="mt-5 text-lg text-ink-100/70 max-w-2xl">{current.description}</p>
-      <div class="mt-6 inline-flex items-center gap-2 text-sm text-ink-100/50">
-        <span class="rounded-full bg-white/10 px-3 py-1">{current.count} itineraries</span>
+    </div>
+  </section>
+
+  {/* ============ 模式 A：有路线的分类（Private Journeys）============ */}
+  {current.hasTours && (
+    <section class="mx-auto max-w-7xl px-4 sm:px-6 py-16 sm:py-24">
+      {/* 内部主题筛选 chip（提示性的，不做交互筛选，符合"只分组不筛选"决策）*/}
+      <div class="mb-10">
+        <div class="text-xs text-ink-500 uppercase tracking-wider mb-3">Browse by theme</div>
+        <div class="flex flex-wrap gap-2">
+          {themeTags.map((tag) => (
+            <span class="rounded-full bg-ink-50 text-ink-700 px-4 py-2 text-sm border border-ink-100">{tag}</span>
+          ))}
+        </div>
+        <p class="mt-3 text-sm text-ink-500">{journeysTours.length} sample itineraries below — each can be customized to your dates, group, and interests.</p>
       </div>
-    </div>
-  </section>
 
-  {/* 路线卡片网格 */}
-  <section class="mx-auto max-w-7xl px-4 sm:px-6 py-16 sm:py-24">
-    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-      {current.tours.map((tour) => (
-        <TourCard tour={tour} />
-      ))}
-    </div>
-  </section>
+      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {journeysTours.map((tour) => (
+          <TourCard tour={tour} />
+        ))}
+      </div>
+    </section>
+  )}
 
-  {/* 横向引导：也看看其他类型路线（补竞品没做的弱点） */}
+  {/* ============ 模式 B：无路线的分类（询盘落地页）============ */}
+  {!current.hasTours && landing && (
+    <section class="mx-auto max-w-4xl px-4 sm:px-6 py-16 sm:py-24">
+      <div class="space-y-10">
+        {landing.sections.map((section) => (
+          <div class="grid sm:grid-cols-[1fr] gap-3 pb-8 border-b border-ink-100">
+            <h2 class="font-display text-2xl text-ink-900">{section.title}</h2>
+            <p class="text-ink-500 leading-relaxed">{section.desc}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-12 rounded-2xl bg-ink-50 p-6 sm:p-8">
+        <p class="text-ink-700 leading-relaxed">{landing.closing}</p>
+        <div class="mt-6">
+          <Button href="/contact" variant="primary" size="lg">Tell us what you need →</Button>
+        </div>
+      </div>
+    </section>
+  )}
+
+  {/* 横向引导：也看看其他类型 */}
   <section class="bg-ink-50 py-16 sm:py-20">
     <div class="mx-auto max-w-7xl px-4 sm:px-6">
-      <h2 class="font-display text-2xl sm:text-3xl text-ink-900 mb-8 text-center">Explore other kinds of tours</h2>
+      <h2 class="font-display text-2xl sm:text-3xl text-ink-900 mb-8 text-center">Explore other kinds of trips</h2>
       <div class="grid gap-5 sm:grid-cols-3">
         {others.map((cat) => (
           <a href={`/tours/${cat.id}`} class="group rounded-2xl bg-white border border-ink-100 p-6 hover:shadow-xl hover:border-vermilion-500/30 transition-all duration-300 hover:-translate-y-1">
             <div class="text-vermilion-600 font-medium text-xs uppercase tracking-wider mb-2">{cat.tagline}</div>
             <h3 class="font-display text-xl text-ink-900 group-hover:text-vermilion-600 transition-colors">{cat.name}</h3>
             <p class="mt-2 text-sm text-ink-500 line-clamp-2">{cat.description}</p>
-            <div class="mt-4 text-sm text-vermilion-600 font-medium">{cat.count} tours →</div>
+            <div class="mt-4 text-sm text-vermilion-600 font-medium">
+              {cat.hasTours ? `${categoryWithData?.tours.length || ''} sample routes →` : 'By request →'}
+            </div>
           </a>
         ))}
       </div>
     </div>
-  </section>
-
-  {/* CTA */}
-  <section class="mx-auto max-w-7xl px-4 sm:px-6 py-16 sm:py-20 text-center">
-    <h2 class="font-display text-2xl sm:text-3xl text-ink-900 mb-4">Can't decide? We'll help.</h2>
-    <p class="text-ink-500 mb-6">Tell us your interests and dates — we'll suggest the right tour.</p>
-    <Button href="/contact" variant="primary" size="lg">Plan My Trip →</Button>
   </section>
 </BaseLayout>

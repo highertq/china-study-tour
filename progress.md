@@ -4,8 +4,9 @@
 
 **项目仓库**：https://github.com/highertq/china-study-tour
 **线上地址**：https://china-study-tour.pages.dev
+**品牌名**：China Crossroads（中国十字路口）
 **技术栈**：Astro + Tailwind CSS v4 + Cloudflare Pages
-**最后更新**：2026-07-18（信息架构重构）
+**最后更新**：2026-07-18（品牌 + 分类体系重构）
 
 ---
 
@@ -49,24 +50,34 @@
 - [x] 域名配置：china-study-tour.pages.dev
 - [x] SEO 域名修复（astro.config / robots / site.config 三处同步）
 
-### 阶段 6：信息架构重构（已完成 ✅）
-**背景**：对照竞品 goinsidechina.com，发现自家"信息不清晰"——13 条路线平铺、导航薄、无产品分类。
-**关键决策**：不照搬竞品的"服务形态"4 分类（他们 Journeys/Experiences/Business/Special），因为我们的 13 条路线全是多日定制游，硬套会有 3 个空分类。改成**主题维度 4 分类**：Tech Deep Dives / Ancient Wonders / Family Tours / Custom Journeys。
+### 阶段 7：品牌 + 分类体系重构（已完成 ✅）
+**背景**：用户决定照抄竞品 goinsidechina.com 的 4 大服务形态分类（因为自家路线是 AI 占位，后期对接真实旅行社），并启用正式品牌名。
 
-- [x] 数据治理：schema 新增 `category` 字段（zod enum，4 选多），13 条 md 全部归类
-- [x] 修复 tag 命名不一致（`adult` → `professional`）
-- [x] lib/tours.js 新增 `getToursByCategory` / `getAllCategories` / `getCategoryWithTours`
-- [x] 抽取 `TourCard.astro` 复用组件（消除首页和列表页的重复标记）
-- [x] 新建 `[category].astro` 动态路由，生成 4 个分类页（/tours/tech 等）
-- [x] **重命名 `[...slug].astro` → `[slug].astro` 避免 catch-all 与 `[category]` 路由冲突**
-- [x] 改造 `/tours` 总览页：从平铺 13 卡 → 按 4 分类分组展示 + 锚点跳转
-- [x] 重构 Header：Tours 改为 hover 下拉菜单（含 4 子分类 + 描述），手机端汉堡菜单也展开子分类
-- [x] 首页加"产品矩阵 bar"（Hero 下方 4 张分类入口卡，学竞品 WHAT WE DO 结构）
-- [x] 分类页底部加"也看看其他类型"横向引导（补竞品没做的弱点）
-- [x] site.config.js nav 扩展为支持 `children` 子菜单结构
-- [x] build 验证：23 页面全部通过（原 19 + 新增 4 分类页）
+**品牌决策**：China Study Tour → **China Crossroads**（中国十字路口）
+- tagline："China, where ancient and future meet"
+- 语义最丰富：呼应"古老×科技交汇"核心定位
+- 跟竞品"Inside China"完全区分开
 
-**路线分类分布**：tech 6+ / ancient 7 / family 9 / custom 4（路线可跨分类，无空分类）
+**分类决策**：放弃上一版的"主题 4 分类"（tech/ancient/family/custom），改成竞品验证过的"服务形态 4 分类"：
+- **Private Journeys**（/tours/journeys）：13 条现有路线全部归入，内部用 tags 做主题筛选 chip
+- **Local Experiences**（/tours/experiences）：询盘落地页（未来对接真实产品）
+- **Business Visits**（/tours/business）：询盘落地页
+- **Special-Purpose Trips**（/tours/special）：询盘落地页
+
+**关键设计**：无路线的 3 个分类不用空网格（会伤信任），而是做成内容详实的询盘落地页（学竞品做法：讲清楚能做什么+服务边界+CTA）。
+
+- [x] 品牌全站替换：China Study Tour → China Crossroads（含 tagline、email、各页 description）
+- [x] CATEGORIES 重定义为服务形态 4 分类（带 hasTours 标志区分渲染模式）
+- [x] schema category 字段改为 enum(journeys/experiences/business/special)，默认 journeys
+- [x] 13 条 md category 全部批量改为 ["journeys"]（用 perl 一次替换）
+- [x] [category].astro 重写：支持双模式渲染（有路线=网格+筛选 chip / 无路线=询盘落地页）
+- [x] tours 总览页重写：4 分类入口卡 + Private Journeys 样本路线展示
+- [x] Header 下拉菜单改为竞品 4 分类
+- [x] 首页产品矩阵改为竞品 4 分类 + "Start with why you're coming to China" 文案
+- [x] 3 个询盘落地页内容（experiences 3 节 / business 4 节 / special 3 节，每个带服务边界说明）
+- [x] build 验证：23 页面全部通过
+
+**架构优势**：路线对接真实旅行社时，只需在对应 category 加 md 即可自动出现，不用改架构。
 
 ---
 

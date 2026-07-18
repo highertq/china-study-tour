@@ -8,7 +8,7 @@ cities: "Xi'an"
 priceFrom: 2080
 bestFor: "Adults · Families"
 tags: ["ancient", "tech", "culture", "family"]
-category: ["ancient", "family"]
+category: ["journeys"]
 featured: false
 heroImage: /images/tours/xian-ancient-capital.jpg
 cardImage: /images/tours/xian-ancient-capital.jpg

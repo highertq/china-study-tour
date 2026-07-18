@@ -8,7 +8,7 @@ cities: "Shanghai · Suzhou"
 priceFrom: 1890
 bestFor: "Adults · Professionals"
 tags: ["tech", "modern", "professional"]
-category: ["tech", "custom"]
+category: ["journeys"]
 featured: true
 heroImage: /images/tours/shanghai-future-past.jpg
 cardImage: /images/tours/shanghai-future-past.jpg

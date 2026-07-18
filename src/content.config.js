@@ -10,42 +10,51 @@
 import { defineCollection, z } from 'astro:content';
 
 // =============================================================================
-// 4 大产品分类定义（信息架构重构的核心）
+// 4 大产品分类（学竞品 goinsidechina.com 的服务形态维度）
 // 这是全站唯一的分类定义来源，nav、分类页、首页都从这里读
-// 路线通过 frontmatter 的 category 字段归属到一个或多个分类
+//
+// 分类逻辑（服务形态 / 客户来访目的，不是主题）：
+//   journeys  — 多日定制游（含全部 13 条现有路线，内部用 tags 筛选主题）
+//   experiences — 单日/半日城市体验（当前是询盘落地页，未来对接真实产品）
+//   business  — 商务访问（询盘落地页）
+//   special   — 特殊目的（寻根/拍摄/里程碑，询盘落地页）
 // =============================================================================
 export const CATEGORIES = [
   {
-    id: 'tech',
-    name: 'Tech Deep Dives',
-    tagline: 'Where tomorrow is being built — today',
+    id: 'journeys',
+    name: 'Private Journeys',
+    tagline: 'Multi-day China, built around you',
     description:
-      'Robotaxis on public roads, the world’s largest automated port, drone capitals, megafactories, rocket launches. These tours go inside the China most travelers never see.',
+      'Multi-day private journeys across China — one city or several, ancient or futuristic, family-paced or deep-dive. Every itinerary pairs 5,000 years of civilization with the technology being built today. Start from one of our sample routes, or design your own from a rough idea.',
     order: 1,
+    hasTours: true, // 有真实路线，直接展示
   },
   {
-    id: 'ancient',
-    name: 'Ancient Wonders',
-    tagline: '5,000 years of civilization, up close',
+    id: 'experiences',
+    name: 'Local Experiences',
+    tagline: 'Half-day or full-day city experiences',
     description:
-      'The Great Wall, the Terracotta Army, the Forbidden City, ancient gardens and Silk Road ports. Walk through the civilization that shaped East Asia.',
+      'Lighter-touch, in-city experiences led by a local host — food walks, neighborhood discoveries, single-theme deep dives. Ideal if you\'re already in China for business or transit and want a few authentic hours in the city you\'re in.',
     order: 2,
+    hasTours: false, // 询盘落地页（未来对接真实产品）
   },
   {
-    id: 'family',
-    name: 'Family Tours',
-    tagline: 'Built for curious kids and their parents',
+    id: 'business',
+    name: 'Business Visits',
+    tagline: 'On-the-ground support for business travelers',
     description:
-      'Pandas, the Great Wall toboggan, dim sum workshops, science museums. Tours paced for families, with child-friendly meals and shorter travel days.',
+      'For entrepreneurs, sourcing teams, trade-fair visitors, and delegations: we coordinate meetings, factory and showroom visits, interpretation, transport, and business meals — while you focus on the deal.',
     order: 3,
+    hasTours: false,
   },
   {
-    id: 'custom',
-    name: 'Custom Journeys',
-    tagline: 'Multi-city grand tours, designed around you',
+    id: 'special',
+    name: 'Special-Purpose Trips',
+    tagline: 'Trips with a personal reason',
     description:
-      'Combine cities and themes into one seamless trip. Our Grand Tour, the South China Triangle, or a fully bespoke itinerary built from your idea.',
+      'Not every China trip is a vacation. Family roots and hometown visits, creative and portrait shoots, anniversaries and personal milestones. We shape the logistics around your reason for coming.',
     order: 4,
+    hasTours: false,
   },
 ];
 
@@ -63,9 +72,10 @@ const tours = defineCollection({
     priceFrom: z.number(),                // 起步价（美元）
       bestFor: z.string().optional(),       // 适合人群：Families / Students / Adults
       tags: z.array(z.string()).default([]), // 标签：tech, ancient, family 等，用于筛选
-      // ⭐ 主分类（信息架构核心）：路线归属到 4 大分类中的一个或多个
-      // 值必须是 tech / ancient / family / custom 之一（来自上面 CATEGORIES）
-      category: z.array(z.enum(['tech', 'ancient', 'family', 'custom'])).default([]),
+      // ⭐ 主分类（信息架构核心）：路线归属到 4 大服务形态分类中的一个或多个
+      // 当前所有 13 条路线都属于 journeys（多日定制游）
+      // 值必须是 journeys / experiences / business / special 之一
+      category: z.array(z.enum(['journeys', 'experiences', 'business', 'special'])).default(['journeys']),
       featured: z.boolean().default(false), // 是否在首页推荐
     // 图片路径：指向 public 目录下的文件，例如 /images/tours/beijing.jpg
     // 不填则用占位图。SEO 提示：图片文件名建议用英文关键词，如 beijing-great-wall.jpg

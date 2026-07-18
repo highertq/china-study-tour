@@ -8,7 +8,7 @@ cities: "Wenchang · Haikou"
 priceFrom: 2280
 bestFor: "Adults · Families"
 tags: ["tech", "nature", "family"]
-category: ["tech", "family"]
+category: ["journeys"]
 featured: false
 heroImage: /images/tours/tech-rocket.jpg
 cardImage: /images/tours/tech-rocket.jpg

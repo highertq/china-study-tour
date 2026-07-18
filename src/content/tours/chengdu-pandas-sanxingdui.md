@@ -8,7 +8,7 @@ cities: "Chengdu"
 priceFrom: 2180
 bestFor: "Families · Adults"
 tags: ["ancient", "culture", "family", "nature"]
-category: ["ancient", "family"]
+category: ["journeys"]
 featured: false
 heroImage: /images/tours/chengdu-pandas-sanxingdui.jpg
 cardImage: /images/tours/chengdu-pandas-sanxingdui.jpg
