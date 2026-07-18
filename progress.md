@@ -6,7 +6,7 @@
 **线上地址**：https://china-study-tour.pages.dev
 **品牌名**：China Crossroads（中国十字路口）
 **技术栈**：Astro + Tailwind CSS v4 + Cloudflare Pages
-**最后更新**：2026-07-18（品牌 + 分类体系重构）
+**最后更新**：2026-07-18（内容补全：Travel Help + Destinations + FAQ + 联系方式）
 
 ---
 
@@ -66,18 +66,27 @@
 
 **关键设计**：无路线的 3 个分类不用空网格（会伤信任），而是做成内容详实的询盘落地页（学竞品做法：讲清楚能做什么+服务边界+CTA）。
 
-- [x] 品牌全站替换：China Study Tour → China Crossroads（含 tagline、email、各页 description）
+- [x] 品牌全站替换：China Study Tour → China Crossroads
 - [x] CATEGORIES 重定义为服务形态 4 分类（带 hasTours 标志区分渲染模式）
-- [x] schema category 字段改为 enum(journeys/experiences/business/special)，默认 journeys
-- [x] 13 条 md category 全部批量改为 ["journeys"]（用 perl 一次替换）
+- [x] 13 条 md category 全部批量改为 ["journeys"]
 - [x] [category].astro 重写：支持双模式渲染（有路线=网格+筛选 chip / 无路线=询盘落地页）
-- [x] tours 总览页重写：4 分类入口卡 + Private Journeys 样本路线展示
-- [x] Header 下拉菜单改为竞品 4 分类
-- [x] 首页产品矩阵改为竞品 4 分类 + "Start with why you're coming to China" 文案
-- [x] 3 个询盘落地页内容（experiences 3 节 / business 4 节 / special 3 节，每个带服务边界说明）
 - [x] build 验证：23 页面全部通过
 
-**架构优势**：路线对接真实旅行社时，只需在对应 category 加 md 即可自动出现，不用改架构。
+### 阶段 8：内容补全（对标竞品缺口，已完成 ✅）
+**背景**：深度分析竞品 goinsidechina.com 后，发现 4 大内容缺口：Travel Help / Destinations / FAQ / 轻量表单。本阶段全部补齐。
+
+- [x] **联系方式更新**：真实电话 +86 151 6815 9750 + 邮箱 mantq@qq.com（之前是占位）
+- [x] **SiteNotice 全局公告条**：所有页面顶部显示"网站搭建中"友好提示，降低"信息不完整=不可信"印象
+- [x] **CategoryTabs sticky 分类切换条**：放在 /tours 和 4 个分类页顶部，永远可见（解决"分类藏在 hover 下拉里看不见"的问题）
+- [x] **Contact 页两段式表单**：顶部轻量表单（Name/Email/一句话）降低门槛 + 折叠详细表单
+- [x] **/travel-help 实用指南页**：6 大主题（Payments/Apps/Visa/Transport/Connectivity/Safety），解决老外来中国最大信息焦虑 + SEO 长尾入口
+- [x] **/destinations 目的地板块**：总览页 + 3 个核心城市详情页（北京/上海/深圳），学竞品结构（定位→亮点→实用信息→相关路线→周边城市）
+- [x] **首页 FAQ 板块**：7 个高频问题（签证/安全/语言/工厂参观/价格等），询盘转化临门一脚
+- [x] **导航加 Destinations + Travel Help 入口**
+- [x] **README 加待办事项清单**（域名注册/公司注册/真实联系/合作条款等用户自己要做的）
+- [x] build 验证：28 页面全部通过
+
+**架构亮点**：destinations 和 tours 都是数据驱动的，加新城市/路线只需往数据文件加一项，自动生成页面 + sitemap。
 
 ---
 

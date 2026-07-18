@@ -10,6 +10,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import TourCard from '../../components/TourCard.astro';
 import Button from '../../components/Button.astro';
+import CategoryTabs from '../../components/CategoryTabs.astro';
 import { CATEGORIES } from '../../content.config.js';
 import { getCategoryWithTours, getAllCategories } from '../../lib/tours';
 
@@ -110,6 +111,8 @@ const landing = landingContent[categoryId];
 
   {/* ============ 模式 A：有路线的分类（Private Journeys）============ */}
   {current.hasTours && (
+    <>
+    <CategoryTabs active={categoryId} />
     <section class="mx-auto max-w-7xl px-4 sm:px-6 py-16 sm:py-24">
       {/* 内部主题筛选 chip（提示性的，不做交互筛选，符合"只分组不筛选"决策）*/}
       <div class="mb-10">
@@ -128,10 +131,13 @@ const landing = landingContent[categoryId];
         ))}
       </div>
     </section>
+    </>
   )}
 
   {/* ============ 模式 B：无路线的分类（询盘落地页）============ */}
   {!current.hasTours && landing && (
+    <>
+    <CategoryTabs active={categoryId} />
     <section class="mx-auto max-w-4xl px-4 sm:px-6 py-16 sm:py-24">
       <div class="space-y-10">
         {landing.sections.map((section) => (
@@ -149,6 +155,7 @@ const landing = landingContent[categoryId];
         </div>
       </div>
     </section>
+    </>
   )}
 
   {/* 横向引导：也看看其他类型 */}

@@ -1,0 +1,45 @@
+---
+// =============================================================================
+// Destinations 总览页 /destinations
+// 城市入口，SEO 长尾流量入口
+// =============================================================================
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TourImage from '../../components/TourImage.astro';
+import { DESTINATIONS } from '../../data/destinations.js';
+
+const description = 'Explore China city by city — Beijing, Shanghai, Shenzhen, and more. Each destination pairs ancient wonders with the technology being built today. Plan your route by city.';
+---
+
+<BaseLayout title="China Destinations" description={description}>
+  <section class="bg-ink-900 text-white pt-36 pb-16 sm:pt-44 sm:pb-20">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6">
+      <span class="text-vermilion-500 font-medium text-sm uppercase tracking-wider mb-3 block">Destinations</span>
+      <h1 class="font-display text-4xl sm:text-5xl md:text-6xl">Where to go in China</h1>
+      <p class="mt-5 text-lg text-ink-100/70 max-w-2xl">{description}</p>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-4 sm:px-6 py-16 sm:py-24">
+    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      {DESTINATIONS.map((dest) => (
+        <a href={`/destinations/${dest.id}`} class="group rounded-2xl overflow-hidden bg-white border border-ink-100 hover:shadow-2xl hover:border-vermilion-500/30 transition-all duration-500 hover:-translate-y-1 flex flex-col">
+          <div class="aspect-[16/10] overflow-hidden">
+            <TourImage src={dest.heroImage} alt={dest.name} className="group-hover:scale-105 transition-transform duration-700" />
+          </div>
+          <div class="p-6 flex flex-col flex-1">
+            <h2 class="font-display text-2xl text-ink-900 group-hover:text-vermilion-600 transition-colors">{dest.name}</h2>
+            <p class="mt-2 text-sm text-ink-500 leading-relaxed flex-1 line-clamp-3">{dest.tagline}</p>
+            <div class="mt-4 pt-4 border-t border-ink-100 text-sm text-vermilion-600 font-medium">
+              Explore {dest.name} →
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <div class="mt-12 rounded-2xl bg-ink-50 p-6 text-center text-sm text-ink-500">
+      More destinations coming soon — Chengdu, Xi\'an, Hangzhou, Guangzhou, Xiamen, Hainan.
+      <a href="/tours/journeys" class="text-vermilion-600 hover:underline ml-1">Browse all tour itineraries →</a>
+    </div>
+  </section>
+</BaseLayout>

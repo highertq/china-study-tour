@@ -19,24 +19,22 @@ export const SITE = {
   url: 'https://china-study-tour.pages.dev',
   locale: 'en', // 目标客户是老外，整站英文
 
-  // --- 联系方式（占位，上线前换成真实的）---
-  email: 'hello@chinacrossroads.com',
-  whatsapp: '+852-0000-0000',   // 香港号码更可信
-  wechat: 'ChinaStudyTour',     // 微信号
-  // 香港注册地址（给老外信誉度用的，上线前换成真实办公地址）
+  // --- 联系方式（真实信息）---
+  email: 'mantq@qq.com',
+  phone: '+86 151 6815 9750',   // 中国手机（可加 WhatsApp/微信）
+  phoneRaw: '+8615168159750',   // 用于 tel: 链接
+  wechat: 'ChinaCrossroads',    // 微信号
+  // 香港注册地址（上线前换成真实办公地址）
   address: {
-    line1: 'Room 1205, Cyberport',
-    line2: 'Hong Kong SAR, China',
+    line1: 'Hong Kong SAR (office pending)',
+    line2: 'China',
   },
 
   // 多联系渠道：覆盖老外的不同习惯（学竞品 Inside China）
-  // WhatsApp：欧美老外最常用，快速问询
-  // Email：正式询盘 / 详细行程
-  // WeChat：华人客户 / 已在华老外
   contactChannels: [
-    { id: 'whatsapp', label: 'WhatsApp', handle: '+852-0000-0000', note: 'Quick questions, reply within hours' },
-    { id: 'email', label: 'Email', handle: 'hello@chinacrossroads.com', note: 'Detailed inquiries & itineraries' },
-    { id: 'wechat', label: 'WeChat', handle: 'ChinaStudyTour', note: 'For Chinese speakers & in-country travelers' },
+    { id: 'whatsapp', label: 'WhatsApp / Phone', handle: '+86 151 6815 9750', note: 'Quick questions, reply within hours' },
+    { id: 'email', label: 'Email', handle: 'mantq@qq.com', note: 'Detailed inquiries & itineraries' },
+    { id: 'wechat', label: 'WeChat', handle: 'ChinaCrossroads', note: 'For Chinese speakers & in-country travelers' },
   ],
 
   // --- 导航栏 ---
@@ -52,6 +50,8 @@ export const SITE = {
         { label: 'Special-Purpose Trips', href: '/tours/special', desc: 'Roots, creative shoots, milestones' },
       ],
     },
+    { label: 'Destinations', href: '/destinations' },
+    { label: 'Travel Help', href: '/travel-help' },
     { label: 'How It Works', href: '/how-it-works' },
     { label: 'Why Us', href: '/about' },
     { label: 'Contact', href: '/contact' },

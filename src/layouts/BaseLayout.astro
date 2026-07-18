@@ -10,6 +10,7 @@
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import SiteNotice from '../components/SiteNotice.astro';
 import { SITE } from '../site.config';
 
 // 接收每个页面传入的 props，带默认值
@@ -62,7 +63,9 @@ const ogImage = new URL(image, Astro.site).href;
   </head>
 
   <body>
-    {/* hero=true 的页面（首页）自己渲染透明 Header 和 Footer；其他页面用默认的 */}
+    {/* 全站公告条：所有页面顶部显示 */}
+    <SiteNotice />
+    {/* hero=true 的页面（首页）自己渲染透明 Header；其他页面用默认的 */}
     {!hero && <Header />}
     <main>
       <slot />

@@ -1,0 +1,157 @@
+---
+// =============================================================================
+// Travel Help 页 /travel-help —— 老外来中国的实用指南
+//
+// 这是竞品的杀手锏板块，解决老外来中国最大的信息焦虑：
+// 支付、App、签证、交通、网络。同时是 SEO 长尾流量入口。
+//
+// 5 大主题 + 安全/落地安抚，每个主题做成立即可读的卡片
+// =============================================================================
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/Button.astro';
+
+const topics = [
+  {
+    id: 'payments',
+    icon: '💳',
+    title: 'Paying in China',
+    subtitle: 'Cash is dead. Here\'s how to pay.',
+    points: [
+      'China runs on WeChat Pay and Alipay — both now accept foreign Visa/Mastercard',
+      'Link your card in Alipay (支付宝) or WeChat Pay before you land; verification takes 10 minutes',
+      'Carry ¥500-1000 cash as backup for small stalls and tips',
+      'Foreign credit cards work in international hotels and big malls, but almost nowhere else',
+      'Tipping is not expected in China — don\'t add it unless explicitly noted',
+    ],
+  },
+  {
+    id: 'apps',
+    icon: '📱',
+    title: 'Essential Apps',
+    subtitle: 'Install these before your flight.',
+    points: [
+      'Alipay — payments, mini-programs, transport (also works as a metro pass in many cities)',
+      'WeChat — payments, communication, scanning QR menus everywhere',
+      'Didi (滴滴) — the Chinese Uber, English interface available inside Alipay/WeChat',
+      'Apple Maps or Amap (高德) — Google Maps is inaccurate and slow in China',
+      'Baidu Translate or Pleco for Chinese; Microsoft Translator works offline',
+    ],
+  },
+  {
+    id: 'visa',
+    icon: '🛂',
+    title: 'Visa & Entry',
+    subtitle: 'You may not need a visa at all.',
+    points: [
+      'China now offers visa-free entry to 50+ countries for 15-30 days (incl. most of EU, Malaysia, Australia, NZ, and others — check your nationality)',
+      '144-hour transit visa allows free entry if you have an onward ticket to a third country',
+      'For longer stays, apply for an L (tourist) visa at a Chinese embassy — we provide invitation letters',
+      'Hong Kong has separate, more relaxed entry rules — many nationalities enter visa-free',
+      'We are not a visa agency, but we guide you on which option fits your trip',
+    ],
+  },
+  {
+    id: 'transport',
+    icon: '🚄',
+    title: 'Getting Around',
+    subtitle: 'Bullet trains beat domestic flights.',
+    points: [
+      'High-speed rail connects almost every major city — Beijing-Shanghai in 4.5 hours, faster than flying door-to-door',
+      'Book trains on Trip.com (English) or 12306 (official, harder for foreigners) up to 15 days ahead',
+      'Metro systems exist in all big cities — pay by scanning Alipay/WeChat transit QR',
+      'Taxis are cheap but drivers rarely speak English; use Didi with typed destination',
+      'Airport-to-city: most airports have a metro line or dedicated express train',
+    ],
+  },
+  {
+    id: 'connectivity',
+    icon: '🌐',
+    title: 'Internet & SIM',
+    subtitle: 'Yes, there\'s a firewall. Here\'s how to deal.',
+    points: [
+      'Google, Facebook, Instagram, WhatsApp, and YouTube are blocked in mainland China',
+      'Hong Kong has full, unrestricted internet — set up your VPN there before crossing into the mainland',
+      'eSIMs (Airalo, Holafly) are the easiest option — install before landing, data works immediately',
+      'For a local SIM, China Unicom is most foreigner-friendly; available at airports',
+      'Recommended VPNs (install before you arrive): LetsVPN, Astrill, or any that explicitly works in China',
+    ],
+  },
+  {
+    id: 'safety',
+    icon: '🛡️',
+    title: 'Safety & Health',
+    subtitle: 'China is one of the safest countries on earth.',
+    points: [
+      'Violent crime is extremely rare against foreigners; you can walk in big cities at night',
+      'Tap water is not drinkable — drink bottled or boiled water only',
+      'Travel insurance with medical evacuation is strongly recommended (required by us)',
+      'Major hospitals in Beijing/Shanghai have international departments with English-speaking doctors',
+      'Pharmacies are everywhere; common medications are cheap and available without prescription',
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="China Travel Help — Payments, Apps, Visa & More"
+  description="Everything you need to know before traveling to China: how to pay (WeChat Pay, Alipay), essential apps, visa options, transport, internet, and safety. Practical guide for international travelers."
+>
+  {/* 页头 */}
+  <section class="bg-ink-900 text-white pt-36 pb-16 sm:pt-44 sm:pb-20">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6">
+      <span class="text-vermilion-500 font-medium text-sm uppercase tracking-wider">Before you come</span>
+      <h1 class="font-display text-4xl sm:text-5xl md:text-6xl mt-4 leading-[1.1]">China, demystified</h1>
+      <p class="mt-5 text-lg text-ink-100/70 max-w-2xl">
+        Traveling to China for the first time raises a hundred practical questions: How do I pay? Which apps work? Is the internet blocked? This guide answers them all — straight, no fluff.
+      </p>
+      <div class="mt-6 text-xs text-ink-100/50">
+        ✦ We help every traveler set up payments, apps, and connectivity before they land — included in every journey.
+      </div>
+    </div>
+  </section>
+
+  {/* 快速跳转锚点 */}
+  <section class="sticky top-16 sm:top-20 z-30 bg-white/95 backdrop-blur-md border-b border-ink-100">
+    <div class="mx-auto max-w-5xl px-4 sm:px-6">
+      <nav class="flex gap-1 overflow-x-auto py-3" aria-label="Travel help topics">
+        {topics.map((t) => (
+          <a href={`#${t.id}`} class="shrink-0 px-3 py-1.5 text-sm text-ink-700 hover:bg-ink-50 rounded-full transition-colors whitespace-nowrap">
+            {t.icon} {t.title}
+          </a>
+        ))}
+      </nav>
+    </div>
+  </section>
+
+  {/* 5 大主题卡片 */}
+  <section class="mx-auto max-w-5xl px-4 sm:px-6 py-16 sm:py-24 space-y-16">
+    {topics.map((t) => (
+      <div id={t.id} class="scroll-mt-32 grid sm:grid-cols-[60px_1fr] gap-4 sm:gap-8">
+        <div class="text-4xl sm:text-5xl">{t.icon}</div>
+        <div>
+          <h2 class="font-display text-2xl sm:text-3xl text-ink-900">{t.title}</h2>
+          <p class="text-vermilion-600 text-sm mt-1 mb-5">{t.subtitle}</p>
+          <ul class="space-y-3">
+            {t.points.map((p) => (
+              <li class="flex items-start gap-3 text-ink-700 leading-relaxed">
+                <span class="text-vermilion-500 shrink-0 mt-0.5">◆</span>
+                <span>{p}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    ))}
+  </section>
+
+  {/* CTA */}
+  <section class="bg-ink-50 py-16 sm:py-20">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 text-center">
+      <h2 class="font-display text-2xl sm:text-3xl text-ink-900 mb-4">Still nervous about the logistics?</h2>
+      <p class="text-ink-500 mb-8 max-w-xl mx-auto">
+        That's exactly what we handle. Every China Crossroads journey includes pre-trip setup of payments, apps, and connectivity — and 24/7 English support once you're here. You just show up.
+      </p>
+      <Button href="/contact" variant="primary" size="lg">Plan my trip →</Button>
+    </div>
+  </section>
+</BaseLayout>

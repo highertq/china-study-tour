@@ -2,106 +2,145 @@
 // =============================================================================
 // Contact 页 /contact
 //
-// 【作用】核心转化页 —— 把流量变成询盘
-//
-// 表单提交有三种实现方式，按你后续的需求选：
-//   1. Formspree / Web3Forms（免费，最简单，推荐先用这个）
-//      → 注册后拿到 endpoint，填到下面 form 的 action 里就行
-//   2. Netlify Forms（部署在 Netlify 时自动可用）
-//   3. 自建后端（API + 邮件发送，最灵活但最复杂）
-//
-// 当前先用「直接发送邮件」的最简方案，后续接 Formspree 只需改一行。
+// 两段式表单（学竞品降低门槛）：
+//   1. 顶部：轻量表单（Name / Email / 一句话需求）— 给还在犹豫的客户
+//   2. 下方：详细表单（travelers/dates/interest）— 给认真规划的客户
+// 同时展示真实联系方式
 // =============================================================================
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactChannels from '../components/ContactChannels.astro';
 import { SITE } from '../site.config';
 ---
 
 <BaseLayout
-  title="Contact & Plan Your Trip"
-  description="Plan your China study tour. Tell us your dates, group size and interests — we'll design a tailored itinerary within 24 hours. Hong Kong based, English support."
+  title="Contact Us"
+  description="Get in touch with China Crossroads. Quick question or full trip planning — we reply within 24 hours. WhatsApp, Email, or WeChat."
 >
   <section class="bg-ink-900 text-white pt-36 pb-16 sm:pt-44 sm:pb-20">
     <div class="mx-auto max-w-4xl px-4 sm:px-6">
       <span class="text-vermilion-500 font-medium text-sm uppercase tracking-wider">Contact</span>
-      <h1 class="font-display text-4xl sm:text-5xl md:text-6xl mt-4 leading-[1.1]">Plan your China study tour</h1>
+      <h1 class="font-display text-4xl sm:text-5xl md:text-6xl mt-4 leading-[1.1]">Let's talk about China</h1>
       <p class="mt-5 text-lg text-ink-100/70 max-w-2xl">
-        Tell us a bit about your group. We'll reply within 24 hours with ideas, sample itineraries and a tailored quote.
+        Have a question before planning? Just send a quick note. Already know what you want? Use the full form below. Either way, we reply within 24 hours.
       </p>
     </div>
   </section>
 
   <section class="mx-auto max-w-5xl px-4 sm:px-6 py-16 sm:py-20 grid gap-12 lg:grid-cols-[1fr_320px]">
-    {/* ===== 左侧：询盘表单 ===== */}
-    <div>
-      <!-- ⚠️ 后续接 Formspree：把 action 换成你的 endpoint，method 保留 POST -->
-      <form action={`mailto:${SITE.email}`} method="post" enctype="text/plain" class="space-y-5">
-        <div class="grid sm:grid-cols-2 gap-5">
-          <div>
-            <label for="name" class="block text-sm font-medium text-ink-700 mb-1">Your name *</label>
-            <input id="name" name="name" type="text" required class="w-full rounded-lg border border-ink-100 px-4 py-2.5 focus:border-vermilion-500 focus:ring-2 focus:ring-vermilion-500/20 outline-none transition" />
+    {/* ===== 左侧：两段式表单 ===== */}
+    <div class="space-y-12">
+      {/* ---- 1. 轻量表单（降低门槛，给犹豫客户）---- */}
+      <div>
+        <span class="text-vermilion-600 font-medium text-xs uppercase tracking-wider">Quick question</span>
+        <h2 class="font-display text-2xl text-ink-900 mt-2 mb-5">Just say hi</h2>
+        <form action={`mailto:${SITE.email}`} method="post" enctype="text/plain" class="space-y-4">
+          <div class="grid sm:grid-cols-2 gap-4">
+            <input name="name" type="text" required placeholder="Your name *" class="w-full rounded-lg border border-ink-100 px-4 py-2.5 focus:border-vermilion-500 focus:ring-2 focus:ring-vermilion-500/20 outline-none transition" />
+            <input name="email" type="email" required placeholder="Email *" class="w-full rounded-lg border border-ink-100 px-4 py-2.5 focus:border-vermilion-500 focus:ring-2 focus:ring-vermilion-500/20 outline-none transition" />
           </div>
-          <div>
-            <label for="email" class="block text-sm font-medium text-ink-700 mb-1">Email *</label>
-            <input id="email" name="email" type="email" required class="w-full rounded-lg border border-ink-100 px-4 py-2.5 focus:border-vermilion-500 focus:ring-2 focus:ring-vermilion-500/20 outline-none transition" />
-          </div>
-        </div>
-
-        <div class="grid sm:grid-cols-2 gap-5">
-          <div>
-            <label for="travelers" class="block text-sm font-medium text-ink-700 mb-1">Number of travelers</label>
-            <input id="travelers" name="travelers" type="number" min="1" class="w-full rounded-lg border border-ink-100 px-4 py-2.5 focus:border-vermilion-500 focus:ring-2 focus:ring-vermilion-500/20 outline-none transition" />
-          </div>
-          <div>
-            <label for="dates" class="block text-sm font-medium text-ink-700 mb-1">Approx. travel dates</label>
-            <input id="dates" name="dates" type="text" placeholder="e.g. July 2026" class="w-full rounded-lg border border-ink-100 px-4 py-2.5 focus:border-vermilion-500 focus:ring-2 focus:ring-vermilion-500/20 outline-none transition" />
-          </div>
-        </div>
-
-        <div>
-          <label for="interest" class="block text-sm font-medium text-ink-700 mb-1">What interests you most?</label>
-          <select id="interest" name="interest" class="w-full rounded-lg border border-ink-100 px-4 py-2.5 bg-white focus:border-vermilion-500 focus:ring-2 focus:ring-vermilion-500/20 outline-none transition">
-            <option>Ancient history & culture</option>
-            <option>Technology & innovation</option>
-            <option>Both equally</option>
-            <option>Family-friendly experiences</option>
-            <option>Not sure yet — advise me</option>
-          </select>
-        </div>
-
-        <div>
-          <label for="message" class="block text-sm font-medium text-ink-700 mb-1">Anything else?</label>
-          <textarea id="message" name="message" rows="4" placeholder="Tell us about your group, must-see places, budget..." class="w-full rounded-lg border border-ink-100 px-4 py-2.5 focus:border-vermilion-500 focus:ring-2 focus:ring-vermilion-500/20 outline-none transition"></textarea>
-        </div>
-
-        <button type="submit" class="w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-vermilion-500 px-8 py-3.5 font-semibold text-white hover:bg-vermilion-600 hover:scale-105 transition-all shadow-lg shadow-vermilion-500/30">
-          Send inquiry →
-        </button>
-        <p class="text-xs text-ink-500">We reply within 24 hours. No deposit required to inquire.</p>
-      </form>
-    </div>
-
-    {/* ===== 右侧：其他联系方式 ===== */}
-    <aside class="space-y-6">
-      <div class="rounded-2xl border border-ink-100 bg-gradient-to-br from-ink-50 to-white p-6">
-        <h3 class="font-bold text-ink-900 mb-3">Other ways to reach us</h3>
-        <ul class="text-sm space-y-3 text-ink-700">
-          <li>
-            <div class="text-xs text-ink-500">Email</div>
-            <a href={`mailto:${SITE.email}`} class="text-vermilion-600 hover:underline">{SITE.email}</a>
-          </li>
-          <li>
-            <div class="text-xs text-ink-500">WhatsApp / WeChat</div>
-            <div>{SITE.whatsapp}</div>
-          </li>
-        </ul>
+          <textarea name="message" rows="3" placeholder="What's on your mind? (one line is enough)" class="w-full rounded-lg border border-ink-100 px-4 py-2.5 focus:border-vermilion-500 focus:ring-2 focus:ring-vermilion-500/20 outline-none transition"></textarea>
+          <button type="submit" class="w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-vermilion-500 px-6 py-3 font-semibold text-white hover:bg-vermilion-600 transition-colors">
+            Send →
+          </button>
+        </form>
       </div>
 
-      <div class="rounded-2xl border border-ink-100 bg-white p-6">
-        <h3 class="font-bold text-ink-900 mb-2">Hong Kong office</h3>
-        <address class="not-italic text-sm text-ink-500 leading-relaxed">
-          {SITE.address.line1}<br />
-          {SITE.address.line2}
-        </address>
+      {/* ---- 2. 详细表单（认真规划的客户）---- */}
+      <details class="group rounded-2xl border border-ink-100 bg-ink-50/50">
+        <summary class="cursor-pointer p-6 flex items-center justify-between list-none">
+          <div>
+            <span class="text-vermilion-600 font-medium text-xs uppercase tracking-wider">Full planning</span>
+            <h2 class="font-display text-2xl text-ink-900 mt-1">I'm ready to plan my trip</h2>
+            <p class="text-sm text-ink-500 mt-1">Tell us dates, group, interests — get a tailored quote in 24h.</p>
+          </div>
+          <span class="text-vermilion-500 text-2xl transition-transform group-open:rotate-45 shrink-0 ml-4">+</span>
+        </summary>
+        <div class="px-6 pb-6">
+          <form action={`mailto:${SITE.email}`} method="post" enctype="text/plain" class="space-y-5">
+            <div class="grid sm:grid-cols-2 gap-5">
+              <div>
+                <label for="name2" class="block text-sm font-medium text-ink-700 mb-1">Your name *</label>
+                <input id="name2" name="name" type="text" required class="w-full rounded-lg border border-ink-100 px-4 py-2.5 bg-white focus:border-vermilion-500 focus:ring-2 focus:ring-vermilion-500/20 outline-none transition" />
+              </div>
+              <div>
+                <label for="email2" class="block text-sm font-medium text-ink-700 mb-1">Email *</label>
+                <input id="email2" name="email" type="email" required class="w-full rounded-lg border border-ink-100 px-4 py-2.5 bg-white focus:border-vermilion-500 focus:ring-2 focus:ring-vermilion-500/20 outline-none transition" />
+              </div>
+            </div>
+
+            <div class="grid sm:grid-cols-2 gap-5">
+              <div>
+                <label for="travelers" class="block text-sm font-medium text-ink-700 mb-1">Number of travelers</label>
+                <input id="travelers" name="travelers" type="number" min="1" class="w-full rounded-lg border border-ink-100 px-4 py-2.5 bg-white focus:border-vermilion-500 focus:ring-2 focus:ring-vermilion-500/20 outline-none transition" />
+              </div>
+              <div>
+                <label for="dates" class="block text-sm font-medium text-ink-700 mb-1">Approx. travel dates</label>
+                <input id="dates" name="dates" type="text" placeholder="e.g. July 2026" class="w-full rounded-lg border border-ink-100 px-4 py-2.5 bg-white focus:border-vermilion-500 focus:ring-2 focus:ring-vermilion-500/20 outline-none transition" />
+              </div>
+            </div>
+
+            <div>
+              <label for="interest" class="block text-sm font-medium text-ink-700 mb-1">What interests you most?</label>
+              <select id="interest" name="interest" class="w-full rounded-lg border border-ink-100 px-4 py-2.5 bg-white focus:border-vermilion-500 focus:ring-2 focus:ring-vermilion-500/20 outline-none transition">
+                <option>Ancient history & culture</option>
+                <option>Technology & innovation</option>
+                <option>Both equally</option>
+                <option>Family-friendly experiences</option>
+                <option>Business visit</option>
+                <option>Not sure yet — advise me</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="message2" class="block text-sm font-medium text-ink-700 mb-1">Anything else?</label>
+              <textarea id="message2" name="message" rows="4" placeholder="Tell us about your group, must-see places, budget..." class="w-full rounded-lg border border-ink-100 px-4 py-2.5 bg-white focus:border-vermilion-500 focus:ring-2 focus:ring-vermilion-500/20 outline-none transition"></textarea>
+            </div>
+
+            <button type="submit" class="w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-ink-900 px-8 py-3.5 font-semibold text-white hover:bg-ink-700 transition-colors">
+              Send full inquiry →
+            </button>
+            <p class="text-xs text-ink-500">No deposit required. We reply within 24 hours.</p>
+          </form>
+        </div>
+      </details>
+    </div>
+
+    {/* ===== 右侧：联系方式 ===== */}
+    <aside class="space-y-6">
+      <div class="rounded-2xl border border-ink-100 bg-gradient-to-br from-ink-50 to-white p-6">
+        <h3 class="font-display text-lg text-ink-900 mb-1">Talk to us directly</h3>
+        <p class="text-xs text-ink-500 mb-4">Hong Kong time (UTC+8). Reply within 24h.</p>
+        <div class="space-y-3 text-sm">
+          <a href={`tel:${SITE.phoneRaw}`} class="flex items-center gap-3 text-ink-700 hover:text-vermilion-600 transition-colors">
+            <span class="text-lg">📞</span>
+            <div>
+              <div class="text-xs text-ink-500">Phone / WhatsApp</div>
+              <div class="font-medium">{SITE.phone}</div>
+            </div>
+          </a>
+          <a href={`mailto:${SITE.email}`} class="flex items-center gap-3 text-ink-700 hover:text-vermilion-600 transition-colors">
+            <span class="text-lg">✉️</span>
+            <div class="min-w-0">
+              <div class="text-xs text-ink-500">Email</div>
+              <div class="font-medium break-all">{SITE.email}</div>
+            </div>
+          </a>
+          <div class="flex items-center gap-3 text-ink-700">
+            <span class="text-lg">🟢</span>
+            <div>
+              <div class="text-xs text-ink-500">WeChat</div>
+              <div class="font-medium">{SITE.wechat}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rounded-2xl border border-vermilion-500/30 bg-vermilion-50/50 p-6">
+        <div class="text-2xl mb-2">🚧</div>
+        <h3 class="font-semibold text-ink-900 mb-2 text-sm">Site under construction</h3>
+        <p class="text-xs text-ink-500 leading-relaxed">
+          We're actively building out our full offering. Sample itineraries shown are templates — real routes will be finalized with our partner travel agencies. Bear with us, and reach out anytime.
+        </p>
       </div>
     </aside>
   </section>

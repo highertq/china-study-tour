@@ -8,6 +8,7 @@
 // =============================================================================
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import TourCard from '../../components/TourCard.astro';
+import CategoryTabs from '../../components/CategoryTabs.astro';
 import { CATEGORIES } from '../../content.config.js';
 import { getAllCategories, getCategoryWithTours } from '../../lib/tours';
 
@@ -28,6 +29,9 @@ const description =
       <p class="mt-5 text-lg text-ink-100/70 max-w-2xl">{description}</p>
     </div>
   </section>
+
+  {/* sticky 分类切换条：永远可见，不依赖 hover */}
+  <CategoryTabs />
 
   {/* 4 大分类入口卡（一眼看清产品形态） */}
   <section class="mx-auto max-w-7xl px-4 sm:px-6 py-16 sm:py-20">

@@ -371,7 +371,62 @@ const heroSlides = [
   </section>
 
   {/* ============================================================
-      6. 客户评价占位区（信任建设的核心：老外看评价做决策）
+      6.5 FAQ —— 询盘转化临门一脚，解决高频犹豫
+      ============================================================ */}
+  <section class="mx-auto max-w-3xl px-4 sm:px-6 py-20 sm:py-28">
+    <div class="text-center mb-12">
+      <span class="text-vermilion-600 font-medium text-sm uppercase tracking-wider">FAQ</span>
+      <h2 class="font-display text-3xl sm:text-4xl md:text-5xl text-ink-900 mt-3">Questions, answered</h2>
+    </div>
+
+    <div class="space-y-3">
+      {[
+        {
+          q: 'Do I need a visa for China?',
+          a: 'Maybe not. China now offers visa-free entry (15-30 days) to 50+ countries including most of the EU, Malaysia, Australia, and New Zealand. The 144-hour transit visa is another option if you have an onward ticket. For longer stays, we provide invitation letters for L visa applications. Check your nationality\'s current policy — we\'ll help you figure out the right path.',
+        },
+        {
+          q: 'Is it safe? Will the internet/apps work?',
+          a: 'China is one of the safest countries on earth for travelers — violent crime against foreigners is extremely rare. Google, WhatsApp, and Instagram are blocked, but we help you install a VPN before landing and set up WeChat Pay / Alipay / Didi so you\'re fully functional from day one. See our Travel Help guide for details.',
+        },
+        {
+          q: 'I don\'t speak any Chinese. Is that a problem?',
+          a: 'No. All our journeys include English-speaking guides and 24/7 English support. We also provide a free pre-trip Chinese starter course and set up translation apps on your phone. Most travelers find they get by easily with our support.',
+        },
+        {
+          q: 'Can I really visit factories and ride driverless taxis?',
+          a: 'Yes — this is our specialty. Some visits (DJI showroom, Huawei campus, public Robotaxi rides) are open to anyone. Others (Xiaomi factory, Baidu Apollo, Yangshan Port) require advance arrangement, which we handle. We tell you honestly what\'s bookable for your dates.',
+        },
+        {
+          q: 'What\'s the group size? Can I do a private trip?',
+          a: 'All our journeys are private — just you and your group. No mixed groups with strangers. There\'s no minimum; we\'ve planned trips for solo travelers, couples, and families of ten. Price per person drops as group size grows.',
+        },
+        {
+          q: 'How much does a trip cost?',
+          a: 'Sample itineraries start from $1,680 per person (4-day Shenzhen) up to $4,880 (12-day Grand Tour). Final pricing depends on group size, hotel level, and season. There\'s a US$150 design fee to produce a detailed day-by-day quote, fully credited toward your trip if you book.',
+        },
+        {
+          q: 'When should I book?',
+          a: 'For peak seasons (March, June-August, December holidays) book 3-4 months ahead — hotels and factory visits fill up. For shoulder seasons, 6-8 weeks is usually fine. We reply to inquiries within 24 hours regardless.',
+        },
+      ].map((item) => (
+        <details class="group rounded-xl border border-ink-100 bg-white p-5 hover:border-vermilion-500/30 transition-colors">
+          <summary class="cursor-pointer font-medium text-ink-900 flex items-center justify-between list-none gap-4">
+            <span>{item.q}</span>
+            <span class="text-vermilion-500 transition-transform group-open:rotate-45 shrink-0">+</span>
+          </summary>
+          <p class="mt-3 text-sm text-ink-500 leading-relaxed">{item.a}</p>
+        </details>
+      ))}
+    </div>
+
+    <div class="mt-8 text-center">
+      <a href="/travel-help" class="text-sm text-vermilion-600 hover:underline">More practical questions? See our full Travel Help guide →</a>
+    </div>
+  </section>
+
+  {/* ============================================================
+      7. 客户评价占位区（信任建设的核心：老外看评价做决策）
          ⚠️ 现在是占位文案，等你有了真实客户后，把这些换成真实故事 + 真名 + 国籍
       ============================================================ */}
   <section class="mx-auto max-w-7xl px-4 sm:px-6 py-20 sm:py-28">

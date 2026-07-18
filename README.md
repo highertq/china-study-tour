@@ -1,7 +1,11 @@
-# China Study Tour — 展示引流站
+# China Crossroads — 中国研学旅游展示站
 
 针对想来中国旅游的老外，做 Google SEO 引流的研学路线展示网站。
-技术栈：**Astro + Tailwind CSS v4**，部署目标是 Cloudflare Pages / Vercel。
+**核心差异化**：古文明 × 科技冲击（小米工厂、Robotaxi、火箭发射）。
+技术栈：**Astro + Tailwind CSS v4**，部署在 Cloudflare Pages。
+
+**线上地址**：https://china-study-tour.pages.dev
+**GitHub**：https://github.com/highertq/china-study-tour
 
 ---
 
@@ -14,6 +18,32 @@ npm run dev        # 启动开发服务器
 ```
 
 浏览器打开 `http://localhost:4321` 就能看到网站。
+
+---
+
+## 📌 待办事项（需要人工处理）
+
+### 🔴 高优先级（用户自己要做）
+- [ ] **注册正式域名**：建议 `chinacrossroads.com`（去 Namecheap / Cloudflare 注册）。注册后通知开发者，会同步更新 `astro.config.mjs`、`public/robots.txt`、`src/site.config.js` 三处域名配置
+- [ ] **香港公司注册**：拿到真实的注册地址、商业登记号，替换 `src/site.config.js` 里的 `address` 占位
+- [ ] **真实联系电话/邮箱**：当前用的是个人手机和 QQ 邮箱占位，建议换成公司邮箱（如 hello@chinacrossroads.com）和香港号码
+- [ ] **跟合伙人谈合作条款**：股权、分工、退出机制写成协议（头号商业风险）
+
+### 🟡 中优先级（业务相关）
+- [ ] **对接真实旅行社**：现 13 条路线是 AI 占位模板，需要跟真实地接社确认可兑现的行程
+- [ ] **谈科技项目合作**：小米工厂、百度 Apollo、洋山港等参观需提前联系企业公关或通过旅行社关系
+- [ ] **客户案例**：跑出第一批真实客户后，把首页 testimonials 占位换成真实故事 + 真名 + 国籍
+
+### 🟢 低优先级（锦上添花）
+- [ ] 接 Formspree 让询盘表单真能收邮件（当前是 mailto 占位）
+- [ ] 提交 sitemap 到 Google Search Console（SEO 计时从这里开始）
+- [ ] 接 Google Analytics 4 + Microsoft Clarity 看流量来源
+- [ ] 准备 og-default.jpg（1200×630）用于社交分享预览
+- [ ] 团队真人照片（About 页目前只有 emoji 占位）
+
+---
+
+## 📂 项目结构（只看你需要改的）
 
 ---
 

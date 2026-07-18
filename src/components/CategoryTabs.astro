@@ -1,0 +1,42 @@
+---
+// =============================================================================
+// CategoryTabs —— sticky 分类切换条
+// 放在 /tours 和所有分类页顶部，老外随时能切换 4 大分类
+// 解决"分类藏在 hover 下拉里看不见"的问题
+//
+// 当前分类会高亮。sticky 让滚动时也一直可见。
+// =============================================================================
+import { CATEGORIES } from '../content.config.js';
+
+interface Props {
+  active?: string; // 当前激活的分类 id（高亮）
+}
+const { active } = Astro.props;
+---
+
+<div class="sticky top-16 sm:top-20 z-30 bg-white/95 backdrop-blur-md border-b border-ink-100">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6">
+    <nav class="flex gap-1 overflow-x-auto py-3 -mb-px" aria-label="Tour categories">
+      <a
+        href="/tours"
+        class:list={[
+          "shrink-0 px-4 py-2 text-sm font-medium rounded-full transition-colors whitespace-nowrap",
+          !active ? "bg-vermilion-500 text-white" : "text-ink-700 hover:bg-ink-50"
+        ]}
+      >
+        All
+      </a>
+      {CATEGORIES.map((cat) => (
+        <a
+          href={`/tours/${cat.id}`}
+          class:list={[
+            "shrink-0 px-4 py-2 text-sm font-medium rounded-full transition-colors whitespace-nowrap",
+            active === cat.id ? "bg-vermilion-500 text-white" : "text-ink-700 hover:bg-ink-50"
+          ]}
+        >
+          {cat.name}
+        </a>
+      ))}
+    </nav>
+  </div>
+</div>
