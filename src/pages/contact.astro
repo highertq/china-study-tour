@@ -14,7 +14,7 @@ import { SITE } from '../site.config';
 
 <BaseLayout
   title="Contact Us"
-  description="Get in touch with China Crossroads. Quick question or full trip planning — we reply within 24 hours. WhatsApp, Email, or WeChat."
+  description="Get in touch with China Crossroads. Quick question or full trip planning — we reply within 24 hours. WhatsApp, Email, or phone."
 >
   <section class="bg-ink-900 text-white pt-36 pb-16 sm:pt-44 sm:pb-20">
     <div class="mx-auto max-w-4xl px-4 sm:px-6">
@@ -33,14 +33,19 @@ import { SITE } from '../site.config';
       <div>
         <span class="text-vermilion-600 font-medium text-xs uppercase tracking-wider">Quick question</span>
         <h2 class="font-display text-2xl text-ink-900 mt-2 mb-5">Just say hi</h2>
-        <form action={`mailto:${SITE.email}`} method="post" enctype="text/plain" class="space-y-4">
+        <form action={`mailto:${SITE.email}`} method="post" enctype="text/plain" class="space-y-4" onsubmit="return false;">
           <div class="grid sm:grid-cols-2 gap-4">
             <input name="name" type="text" required placeholder="Your name *" class="w-full rounded-lg border border-ink-100 px-4 py-2.5 focus:border-vermilion-500 focus:ring-2 focus:ring-vermilion-500/20 outline-none transition" />
             <input name="email" type="email" required placeholder="Email *" class="w-full rounded-lg border border-ink-100 px-4 py-2.5 focus:border-vermilion-500 focus:ring-2 focus:ring-vermilion-500/20 outline-none transition" />
           </div>
           <textarea name="message" rows="3" placeholder="What's on your mind? (one line is enough)" class="w-full rounded-lg border border-ink-100 px-4 py-2.5 focus:border-vermilion-500 focus:ring-2 focus:ring-vermilion-500/20 outline-none transition"></textarea>
-          <button type="submit" class="w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-vermilion-500 px-6 py-3 font-semibold text-white hover:bg-vermilion-600 transition-colors">
-            Send →
+          <div class="rounded-xl bg-ink-50 border border-ink-100 p-4 text-sm text-ink-600">
+            📧 To send us a message, please email directly at
+            <a href={`mailto:${SITE.email}`} class="text-vermilion-600 font-medium hover:underline">{SITE.email}</a>
+            — we reply within 24 hours.
+          </div>
+          <button type="button" disabled class="w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-ink-200 px-6 py-3 font-semibold text-ink-500 cursor-not-allowed">
+            Form submission coming soon
           </button>
         </form>
       </div>
@@ -125,13 +130,6 @@ import { SITE } from '../site.config';
               <div class="font-medium break-all">{SITE.email}</div>
             </div>
           </a>
-          <div class="flex items-center gap-3 text-ink-700">
-            <span class="text-lg">🟢</span>
-            <div>
-              <div class="text-xs text-ink-500">WeChat</div>
-              <div class="font-medium">{SITE.wechat}</div>
-            </div>
-          </div>
         </div>
       </div>
 

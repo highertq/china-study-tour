@@ -1,15 +1,16 @@
 ---
 // =============================================================================
 // Header —— 顶部导航
-// 升级版：电影感毛玻璃胶囊导航 + 手机端汉堡菜单（带交错入场动画）
 //
-// ⚠️ 这个 Header 在「首页（深色 Hero 上）」和「内页（白色背景上）」表现不同：
-//   - 首页 Hero 区是深色背景 → 用白色文字 + 液态玻璃胶囊
-//   - 内页是白色背景 → 用墨色文字 + 半透明胶囊
-//   通过 prop `transparent` 控制（首页传 true）
+// 解决三个历史问题：
+//   1. 公告条与 fixed Header 互相遮挡 → 两者都放进同一个 fixed 容器，垂直堆叠
+//   2. 首页 Tours 下拉 hover 不展开 → liquid-glass 的 overflow:hidden 会裁掉下拉菜单，
+//      所以 nav 不再用 liquid-glass 胶囊包裹，改用 header 自身的毛玻璃背景
+//   3. hover 间隙导致下拉丢失 → 下拉面板紧贴按钮（mt-0），并用透明 padding 区做桥
 // =============================================================================
 import { SITE } from '../site.config';
 import Button from './Button.astro';
+import SiteNotice from './SiteNotice.astro';
 
 interface Props {
   transparent?: boolean; // 首页深色 Hero 上用 true，其他页面用 false
@@ -19,85 +20,62 @@ const textClass = transparent ? 'text-white' : 'text-ink-900';
 const logoClass = transparent ? 'text-white' : 'text-ink-900';
 ---
 
-<header class:list={["fixed top-0 inset-x-0 z-50 transition-colors duration-500", transparent ? 'bg-transparent' : 'bg-white/85 backdrop-blur-md border-b border-ink-100']}>
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between">
-    {/* LOGO */}
-    <a href="/" class:list={["flex items-center gap-2.5 font-display text-xl sm:text-2xl transition-colors", logoClass]}>
-      <span class="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-vermilion-500 text-white text-lg font-serif shadow-lg shadow-vermilion-500/30">华</span>
-      <span class="italic">{SITE.name}</span>
-    </a>
+{/* 整个顶栏：公告条 + 导航，统一 fixed，避免互相遮挡 */}
+<header class="fixed top-0 inset-x-0 z-50">
+  {/* 公告条 */}
+  <SiteNotice />
 
-    {/* 桌面导航：支持 Tours 下拉菜单 */}
-    <nav class:list={["hidden md:flex items-center gap-1 text-sm font-medium", textClass]}>
-      {transparent ? (
-        <div class="liquid-glass rounded-full px-6 py-2.5 flex items-center gap-6">
-          {SITE.nav.map((item) => (
-            item.children ? (
-              <div class="relative group">
-                <a href={item.href} class="opacity-90 hover:opacity-100 transition-opacity flex items-center gap-1">
-                  {item.label}
-                  <svg class="w-3 h-3 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
-                </a>
-                {/* 下拉面板 */}
-                <div class="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-80 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pt-2">
-                  <div class="liquid-glass rounded-2xl p-2 shadow-2xl bg-white text-ink-700">
-                    {item.children.map((child) => (
-                      <a href={child.href} class="block rounded-xl px-4 py-3 hover:bg-vermilion-50 transition-colors">
-                        <div class="font-semibold text-ink-900">{child.label}</div>
-                        <div class="text-xs text-ink-500 mt-0.5">{child.desc}</div>
-                      </a>
-                    ))}
-                  </div>
+  {/* 导航栏（透明模式无背景，让 Hero 透过来；内页白色毛玻璃） */}
+  <div class:list={["transition-colors duration-500", transparent ? 'bg-transparent' : 'bg-white/90 backdrop-blur-md border-b border-ink-100']}>
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between">
+      {/* LOGO */}
+      <a href="/" class:list={["flex items-center gap-2.5 font-display text-xl sm:text-2xl transition-colors", logoClass]}>
+        <span class="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-vermilion-500 text-white text-lg font-serif shadow-lg shadow-vermilion-500/30">华</span>
+        <span class="italic">{SITE.name}</span>
+      </a>
+
+      {/* 桌面导航：直接展示，不用 liquid-glass 胶囊（避免 overflow 裁剪下拉） */}
+      <nav class:list={["hidden md:flex items-center gap-7 text-sm font-medium", textClass]}>
+        {SITE.nav.map((item) => (
+          item.children ? (
+            <div class="relative group">
+              <a href={item.href} class="flex items-center gap-1 hover:text-vermilion-500 transition-colors">
+                {item.label}
+                <svg class="w-3 h-3 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </a>
+              {/* 下拉面板：紧贴按钮（mt-0），透明桥（pt-3）让 hover 不中断 */}
+              <div class="absolute top-full left-1/2 -translate-x-1/2 pt-3 w-80 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                <div class="rounded-2xl p-2 shadow-2xl bg-white ring-1 ring-ink-100 text-ink-700">
+                  {item.children.map((child) => (
+                    <a href={child.href} class="block rounded-xl px-4 py-3 hover:bg-vermilion-50 transition-colors">
+                      <div class="font-semibold text-ink-900">{child.label}</div>
+                      <div class="text-xs text-ink-500 mt-0.5">{child.desc}</div>
+                    </a>
+                  ))}
                 </div>
               </div>
-            ) : (
-              <a href={item.href} class="opacity-90 hover:opacity-100 transition-opacity">{item.label}</a>
-            )
-          ))}
-        </div>
-      ) : (
-        <div class="flex items-center gap-8">
-          {SITE.nav.map((item) => (
-            item.children ? (
-              <div class="relative group">
-                <a href={item.href} class="hover:text-vermilion-600 transition-colors flex items-center gap-1">
-                  {item.label}
-                  <svg class="w-3 h-3 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
-                </a>
-                <div class="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-80 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pt-2">
-                  <div class="rounded-2xl p-2 shadow-2xl bg-white ring-1 ring-ink-100 text-ink-700">
-                    {item.children.map((child) => (
-                      <a href={child.href} class="block rounded-xl px-4 py-3 hover:bg-vermilion-50 transition-colors">
-                        <div class="font-semibold text-ink-900">{child.label}</div>
-                        <div class="text-xs text-ink-500 mt-0.5">{child.desc}</div>
-                      </a>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ) : (
-              <a href={item.href} class="hover:text-vermilion-600 transition-colors">{item.label}</a>
-            )
-          ))}
-        </div>
-      )}
-    </nav>
+            </div>
+          ) : (
+            <a href={item.href} class="hover:text-vermilion-500 transition-colors">{item.label}</a>
+          )
+        ))}
+      </nav>
 
-    {/* CTA 按钮：朱红在深色 Hero 和白色内页背景上都清晰 */}
-    <Button href="/contact" variant="primary" size="sm" class="hidden sm:inline-flex">
-      Plan My Trip
-    </Button>
+      {/* CTA 按钮 */}
+      <Button href="/contact" variant="primary" size="sm" class="hidden sm:inline-flex">
+        Plan My Trip
+      </Button>
 
-    {/* 手机端汉堡按钮 */}
-    <button
-      id="mobile-menu-btn"
-      aria-label="Open menu"
-      class:list={["md:hidden inline-flex items-center justify-center w-10 h-10 rounded-full liquid-glass", textClass]}
-    >
-      {/* 两个图标叠加，切换时交叉淡入淡出 + 旋转 */}
-      <svg class="menu-icon open absolute w-5 h-5 transition-all duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
-      <svg class="menu-icon close absolute w-5 h-5 opacity-0 scale-75 rotate-90 transition-all duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
-    </button>
+      {/* 手机端汉堡按钮 */}
+      <button
+        id="mobile-menu-btn"
+        aria-label="Open menu"
+        class:list={["md:hidden inline-flex items-center justify-center w-10 h-10 rounded-full", transparent ? 'bg-white/10 backdrop-blur ring-1 ring-white/20' : 'bg-ink-50 ring-1 ring-ink-100', textClass]}
+      >
+        <svg class="menu-icon open absolute w-5 h-5 transition-all duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <svg class="menu-icon close absolute w-5 h-5 opacity-0 scale-75 rotate-90 transition-all duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
   </div>
 
   {/* ===== 手机端全屏菜单（带交错入场动画 + Tours 子分类）===== */}
@@ -106,7 +84,6 @@ const logoClass = transparent ? 'text-white' : 'text-ink-900';
       {SITE.nav.map((item, i) => (
         <div class="flex flex-col items-center gap-2" style={`transition-delay: ${100 + i * 50}ms`}>
           <a href={item.href} class="mobile-link text-white font-display text-3xl">{item.label}</a>
-          {/* Tours 的 4 个子分类：小一号显示 */}
           {item.children && (
             <div class="flex flex-col items-center gap-1.5 mt-1 mb-2">
               {item.children.map((child) => (
@@ -123,6 +100,15 @@ const logoClass = transparent ? 'text-white' : 'text-ink-900';
   </div>
 </header>
 
+<style>
+  .mobile-link {
+    opacity: 0;
+    transform: translateY(1rem);
+    transition: opacity 500ms cubic-bezier(0.4, 0, 0.2, 1),
+                transform 500ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+</style>
+
 <script>
   // 手机端汉堡菜单交互
   const btn = document.getElementById('mobile-menu-btn');
@@ -134,14 +120,12 @@ const logoClass = transparent ? 'text-white' : 'text-ink-900';
     if (!menu) return;
     menu.classList.toggle('hidden', !open);
     menu.classList.toggle('flex', open);
-    // 图标切换
     openIcon?.classList.toggle('opacity-0', open);
     openIcon?.classList.toggle('scale-75', open);
     openIcon?.classList.toggle('rotate-90', open);
     closeIcon?.classList.toggle('opacity-0', !open);
     closeIcon?.classList.toggle('scale-75', !open);
     closeIcon?.classList.toggle('rotate-90', !open);
-    // 链接交错入场
     menu.querySelectorAll('.mobile-link').forEach((link) => {
       if (open) {
         link.classList.remove('translate-y-4', 'opacity-0');
@@ -155,15 +139,5 @@ const logoClass = transparent ? 'text-white' : 'text-ink-900';
     const isOpen = !menu?.classList.contains('hidden');
     toggleMenu(!isOpen);
   });
-  // 点链接后关闭
   menu?.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => toggleMenu(false)));
 </script>
-
-<style>
-  .mobile-link {
-    opacity: 0;
-    transform: translateY(1rem);
-    transition: opacity 500ms cubic-bezier(0.4, 0, 0.2, 1),
-                transform 500ms cubic-bezier(0.4, 0, 0.2, 1);
-  }
-</style>

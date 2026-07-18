@@ -34,7 +34,6 @@ export const SITE = {
   contactChannels: [
     { id: 'whatsapp', label: 'WhatsApp / Phone', handle: '+86 151 6815 9750', note: 'Quick questions, reply within hours' },
     { id: 'email', label: 'Email', handle: 'mantq@qq.com', note: 'Detailed inquiries & itineraries' },
-    { id: 'wechat', label: 'WeChat', handle: 'ChinaCrossroads', note: 'For Chinese speakers & in-country travelers' },
   ],
 
   // --- 导航栏 ---

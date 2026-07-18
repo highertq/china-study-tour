@@ -6,7 +6,7 @@
 **线上地址**：https://china-study-tour.pages.dev
 **品牌名**：China Crossroads（中国十字路口）
 **技术栈**：Astro + Tailwind CSS v4 + Cloudflare Pages
-**最后更新**：2026-07-18（内容扩充：8 城市目的地页 + Business/Experiences 落地页丰富）
+**最后更新**：2026-07-18（修复：WeChat 清理 + 表单禁用 + Header 遮挡/hover 不展开）
 
 ---
 
@@ -103,6 +103,23 @@
 - [x] build 验证：34 页面全部通过
 
 **数据状态**：8 个城市页全覆盖现有 13 条路线的目的地，每条路线都能从城市页反向关联到。
+
+### 阶段 10：Bug 修复（已完成 ✅）
+**背景**：用户反馈 3 个具体问题。
+
+- [x] **问题 1：Contact 页清理**
+  - 删除 WeChat 联系方式（site.config contactChannels + Footer + how-it-works + Contact 页右侧栏）
+  - Quick question 表单 submit 按钮禁用（`type="button" disabled` + `cursor-not-allowed`），改成"邮件我们"的引导提示
+  - 保留电话 +86 151 6815 9750 + 邮箱 mantq@qq.com
+- [x] **问题 2：首页公告条与 fixed Header 互相遮挡**
+  - 根因：SiteNotice（static 流式）和 Header（fixed 悬浮）层级冲突
+  - 解决：SiteNotice 移入 Header 内部，两者放进同一个 fixed 容器垂直堆叠，不再互相覆盖
+  - BaseLayout 移除单独的 SiteNotice 渲染（避免重复）
+- [x] **问题 3：首页 Tours 导航 hover 不展开**
+  - 根因：首页透明模式用 `liquid-glass` 胶囊包裹 nav，而 `.liquid-glass` 的 `overflow: hidden` 裁掉了下拉菜单
+  - 解决：nav 不再用 liquid-glass 胶囊，直接展示；下拉面板加 pt-3 透明桥避免 hover 间隙丢失
+  - 内页导航保持不变
+- [x] build 验证：34 页面全部通过
 
 ---
 
