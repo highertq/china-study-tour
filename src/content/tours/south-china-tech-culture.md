@@ -8,6 +8,7 @@ cities: "Guangzhou · Shenzhen · Hong Kong"
 priceFrom: 3280
 bestFor: "Adults · Professionals"
 tags: ["tech", "ancient", "culture", "modern"]
+category: ["tech", "custom"]
 featured: false
 heroImage: /images/tours/south-china-tech-culture.jpg
 cardImage: /images/tours/south-china-tech-culture.jpg

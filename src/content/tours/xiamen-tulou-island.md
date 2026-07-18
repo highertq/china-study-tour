@@ -8,6 +8,7 @@ cities: "Xiamen · Yongding"
 priceFrom: 1880
 bestFor: "Families · Adults"
 tags: ["ancient", "culture", "nature", "family"]
+category: ["ancient", "family"]
 featured: false
 heroImage: /images/tours/xiamen-tulou-island.jpg
 cardImage: /images/tours/xiamen-tulou-island.jpg

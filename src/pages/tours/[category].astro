@@ -1,0 +1,82 @@
+---
+// =============================================================================
+// 分类落地页 /tours/[category]
+//
+// 动态路由：从 CATEGORIES 生成 4 个页面（tech/ancient/family/custom）
+// 每页：分类标题 + 定位文案 + 该分类路线卡片网格
+// 底部：横向引导到其他 3 个分类（补竞品没做的弱点）
+// =============================================================================
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TourCard from '../../components/TourCard.astro';
+import Button from '../../components/Button.astro';
+import { CATEGORIES } from '../../content.config.js';
+import { getCategoryWithTours, getAllCategories } from '../../lib/tours';
+
+// 1. 生成 4 个静态页面
+export async function getStaticPaths() {
+  return CATEGORIES.map((cat) => ({
+    params: { category: cat.id },
+    props: { categoryId: cat.id },
+  }));
+}
+
+// 2. 拿到当前分类 + 该分类的路线 + 其他分类（做底部横向引导）
+const { categoryId } = Astro.props;
+const current = await getCategoryWithTours(categoryId);
+const allCategories = await getAllCategories();
+const others = allCategories.filter((c) => c.id !== categoryId);
+
+// 兜底：万一 categoryId 非法（不该发生），返回 404
+if (!current) return Astro.redirect('/404');
+
+const seoTitle = `${current.name} — China Study Tours`;
+const seoDescription = `${current.description} Browse ${current.count} curated ${current.name.toLowerCase()} itineraries. English-speaking guides, Hong Kong registered company.`;
+---
+
+<BaseLayout title={seoTitle} description={seoDescription}>
+  {/* 页头 */}
+  <section class="bg-ink-900 text-white pt-36 pb-16 sm:pt-44 sm:pb-20">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6">
+      <a href="/tours" class="text-sm text-ink-100/60 hover:text-white mb-5 inline-block transition-colors">← All tours</a>
+      <span class="block text-bronze-500 font-medium text-sm uppercase tracking-wider mb-3">{current.tagline}</span>
+      <h1 class="font-display text-4xl sm:text-5xl md:text-6xl">{current.name}</h1>
+      <p class="mt-5 text-lg text-ink-100/70 max-w-2xl">{current.description}</p>
+      <div class="mt-6 inline-flex items-center gap-2 text-sm text-ink-100/50">
+        <span class="rounded-full bg-white/10 px-3 py-1">{current.count} itineraries</span>
+      </div>
+    </div>
+  </section>
+
+  {/* 路线卡片网格 */}
+  <section class="mx-auto max-w-7xl px-4 sm:px-6 py-16 sm:py-24">
+    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      {current.tours.map((tour) => (
+        <TourCard tour={tour} />
+      ))}
+    </div>
+  </section>
+
+  {/* 横向引导：也看看其他类型路线（补竞品没做的弱点） */}
+  <section class="bg-ink-50 py-16 sm:py-20">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6">
+      <h2 class="font-display text-2xl sm:text-3xl text-ink-900 mb-8 text-center">Explore other kinds of tours</h2>
+      <div class="grid gap-5 sm:grid-cols-3">
+        {others.map((cat) => (
+          <a href={`/tours/${cat.id}`} class="group rounded-2xl bg-white border border-ink-100 p-6 hover:shadow-xl hover:border-vermilion-500/30 transition-all duration-300 hover:-translate-y-1">
+            <div class="text-vermilion-600 font-medium text-xs uppercase tracking-wider mb-2">{cat.tagline}</div>
+            <h3 class="font-display text-xl text-ink-900 group-hover:text-vermilion-600 transition-colors">{cat.name}</h3>
+            <p class="mt-2 text-sm text-ink-500 line-clamp-2">{cat.description}</p>
+            <div class="mt-4 text-sm text-vermilion-600 font-medium">{cat.count} tours →</div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* CTA */}
+  <section class="mx-auto max-w-7xl px-4 sm:px-6 py-16 sm:py-20 text-center">
+    <h2 class="font-display text-2xl sm:text-3xl text-ink-900 mb-4">Can't decide? We'll help.</h2>
+    <p class="text-ink-500 mb-6">Tell us your interests and dates — we'll suggest the right tour.</p>
+    <Button href="/contact" variant="primary" size="lg">Plan My Trip →</Button>
+  </section>
+</BaseLayout>

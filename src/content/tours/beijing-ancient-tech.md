@@ -8,6 +8,7 @@ cities: "Beijing"
 priceFrom: 2480
 bestFor: "Families · Adults"
 tags: ["ancient", "tech", "family"]
+category: ["tech", "ancient", "family"]
 featured: true
 heroImage: /images/tours/beijing-ancient-tech.jpg
 cardImage: /images/tours/beijing-ancient-tech.jpg

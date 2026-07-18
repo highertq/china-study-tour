@@ -1,62 +1,70 @@
 ---
 // =============================================================================
-// 路线列表页 /tours
+// 路线总览页 /tours —— 按分类分组展示（信息架构重构）
 //
-// 【SEO 角色】这是"枢纽页"(hub page)，把权重分发给每条路线详情页
-// 也是老外浏览"你有哪些路线"的入口
+// 从"平铺 13 张卡"改成"4 个分类 section"，每个 section:
+//   - 分类标题 + 定位文案 + "View all →" 链接到分类页
+//   - 该分类前 3 条路线卡片
+// 这样老外一眼能看到 4 类选项，而不是 13 条平铺
 // =============================================================================
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import TourImage from '../../components/TourImage.astro';
-import { getAllTours } from '../../lib/tours';
+import TourCard from '../../components/TourCard.astro';
+import { getAllCategories } from '../../lib/tours';
 
-const tours = await getAllTours();
-
-// 用 title 和 description 精心写，含核心关键词 "China study tour"
-const title = 'China Study Tours';
+const categories = await getAllCategories();
 const description =
-  'Browse our small-group study tours to China — Beijing, Shanghai and beyond. Each tour pairs ancient civilization with cutting-edge technology, designed for international travelers.';
+  'Browse our small-group study tours to China — by what interests you most. Each tour pairs ancient civilization with cutting-edge technology, designed for international travelers.';
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout title="China Study Tours" description={description}>
   {/* 页头 */}
   <section class="bg-ink-900 text-white pt-36 pb-16 sm:pt-44 sm:pb-20">
     <div class="mx-auto max-w-7xl px-4 sm:px-6">
-      <span class="inline-block rounded-full bg-white/10 px-3 py-1 text-xs font-medium ring-1 ring-white/20 mb-5">Study Tours</span>
-      <h1 class="font-display text-4xl sm:text-5xl md:text-6xl">China Study Tours</h1>
-      <p class="mt-5 text-ink-100/70 max-w-2xl text-lg">{description}</p>
+      <span class="text-vermilion-500 font-medium text-sm uppercase tracking-wider mb-3 block">Study Tours</span>
+      <h1 class="font-display text-4xl sm:text-5xl md:text-6xl">Find your way into China</h1>
+      <p class="mt-5 text-lg text-ink-100/70 max-w-2xl">{description}</p>
+
+      {/* 快速分类跳转锚点 */}
+      <div class="mt-8 flex flex-wrap gap-2">
+        {categories.map((cat) => (
+          <a href={`#cat-${cat.id}`} class="rounded-full bg-white/10 hover:bg-white/20 px-4 py-2 text-sm transition-colors ring-1 ring-white/20">
+            {cat.name} <span class="text-ink-100/50">({cat.count})</span>
+          </a>
+        ))}
+      </div>
     </div>
   </section>
 
-  {/* 路线卡片网格 */}
-  <section class="mx-auto max-w-7xl px-4 sm:px-6 py-16 sm:py-24">
-    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-      {tours.map((tour) => (
-        <a href={`/tours/${tour.slug}`} class="group rounded-2xl bg-white overflow-hidden border border-ink-100 hover:shadow-2xl hover:border-vermilion-500/30 transition-all duration-500 hover:-translate-y-1 flex flex-col">
-          {/* 路线图片：没有图片时自动显示渐变占位 */}
-          <div class="aspect-[16/10] overflow-hidden">
-            <TourImage src={tour.data.cardImage || tour.data.heroImage} alt={tour.data.title} className="group-hover:scale-105 transition-transform duration-700" />
+  {/* 按分类分组展示 */}
+  <section class="mx-auto max-w-7xl px-4 sm:px-6 py-16 sm:py-24 space-y-20">
+    {categories.map((cat) => (
+      <div id={`cat-${cat.id}`} class="scroll-mt-24">
+        {/* 分类标题区 */}
+        <div class="flex items-end justify-between mb-8 gap-4">
+          <div>
+            <span class="text-vermilion-600 font-medium text-xs uppercase tracking-wider">{cat.tagline}</span>
+            <h2 class="font-display text-3xl sm:text-4xl text-ink-900 mt-2">{cat.name}</h2>
+            <p class="mt-2 text-ink-500 max-w-2xl">{cat.description}</p>
           </div>
-          <div class="p-6 flex flex-col flex-1">
-            {/* 标签 */}
-            <div class="flex flex-wrap gap-2 mb-3">
-              {tour.data.tags.map((tag) => (
-                <span class="rounded-full bg-vermilion-50 text-vermilion-700 px-2 py-0.5 text-xs font-medium">{tag}</span>
-              ))}
-            </div>
+          <a href={`/tours/${cat.id}`} class="hidden sm:inline-flex shrink-0 items-center gap-1 font-semibold text-vermilion-600 hover:text-vermilion-700 whitespace-nowrap">
+            View all ({cat.count}) →
+          </a>
+        </div>
 
-            <h2 class="font-display text-xl text-ink-900 group-hover:text-vermilion-600 transition-colors">{tour.data.title}</h2>
-            <p class="mt-2 text-sm text-ink-500 line-clamp-2 flex-1">{tour.data.shortDescription}</p>
+        {/* 该分类路线卡片（最多展示 3 条，其余在分类页看） */}
+        <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {cat.tours.slice(0, 3).map((tour) => (
+            <TourCard tour={tour} />
+          ))}
+        </div>
 
-            <div class="mt-4 pt-4 border-t border-ink-100 flex items-center justify-between">
-              <div class="text-xs text-ink-500">
-                <div>{tour.data.duration} days · {tour.data.cities}</div>
-                <div class="mt-0.5">{tour.data.bestFor}</div>
-              </div>
-              <span class="font-bold text-vermilion-600">From ${tour.data.priceFrom}</span>
-            </div>
-          </div>
-        </a>
-      ))}
-    </div>
+        {/* 移动端查看全部链接 */}
+        <div class="mt-6 sm:hidden">
+          <a href={`/tours/${cat.id}`} class="inline-flex items-center gap-1 font-semibold text-vermilion-600">
+            View all {cat.count} {cat.name} →
+          </a>
+        </div>
+      </div>
+    ))}
   </section>
 </BaseLayout>

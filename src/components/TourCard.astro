@@ -1,0 +1,39 @@
+---
+// =============================================================================
+// TourCard —— 可复用的路线卡片
+// 在 tours 列表页、首页、分类页都能用，消除重复标记
+// =============================================================================
+import TourImage from './TourImage.astro';
+
+interface Props {
+  tour: any; // 路线对象（来自 getCollection）
+}
+const { tour } = Astro.props;
+const data = tour.data;
+const href = `/tours/${tour.slug}`;
+---
+
+<a href={href} class="group rounded-2xl bg-white overflow-hidden border border-ink-100 hover:shadow-2xl hover:border-vermilion-500/30 transition-all duration-500 hover:-translate-y-1 flex flex-col">
+  <div class="aspect-[16/10] overflow-hidden">
+    <TourImage src={data.cardImage || data.heroImage} alt={data.title} className="group-hover:scale-105 transition-transform duration-700" />
+  </div>
+  <div class="p-6 flex flex-col flex-1">
+    {/* 标签 */}
+    <div class="flex flex-wrap gap-2 mb-3">
+      {data.tags.map((tag) => (
+        <span class="rounded-full bg-vermilion-50 text-vermilion-700 px-2 py-0.5 text-xs font-medium">{tag}</span>
+      ))}
+    </div>
+
+    <h3 class="font-display text-xl text-ink-900 group-hover:text-vermilion-600 transition-colors">{data.title}</h3>
+    <p class="mt-2 text-sm text-ink-500 line-clamp-2 flex-1">{data.shortDescription}</p>
+
+    <div class="mt-4 pt-4 border-t border-ink-100 flex items-center justify-between">
+      <div class="text-xs text-ink-500">
+        <div>{data.duration} days · {data.cities}</div>
+        <div class="mt-0.5">{data.bestFor}</div>
+      </div>
+      <span class="font-bold text-vermilion-600">From ${data.priceFrom}</span>
+    </div>
+  </div>
+</a>

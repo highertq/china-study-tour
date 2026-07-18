@@ -8,6 +8,7 @@ cities: "Guiyang · Qiannan"
 priceFrom: 1980
 bestFor: "Adults · Families"
 tags: ["tech", "nature", "culture", "family"]
+category: ["tech", "family"]
 featured: false
 heroImage: /images/tours/tech-fast-telescope.jpg
 cardImage: /images/tours/tech-fast-telescope.jpg

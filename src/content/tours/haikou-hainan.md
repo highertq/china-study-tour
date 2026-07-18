@@ -8,6 +8,7 @@ cities: "Haikou · Sanya"
 priceFrom: 1980
 bestFor: "Families · Adults"
 tags: ["culture", "nature", "tech", "family"]
+category: ["family"]
 featured: false
 heroImage: /images/tours/haikou-hainan.jpg
 cardImage: /images/tours/haikou-hainan.jpg

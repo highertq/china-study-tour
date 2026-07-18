@@ -40,8 +40,18 @@ export const SITE = {
   ],
 
   // --- 导航栏 ---
+  // Tours 是带子菜单的下拉（hover 展开 4 个分类），其他是普通链接
   nav: [
-    { label: 'Tours', href: '/tours' },
+    {
+      label: 'Tours',
+      href: '/tours',
+      children: [
+        { label: 'Tech Deep Dives', href: '/tours/tech', desc: 'Robotaxis, megafactories, ports, rockets' },
+        { label: 'Ancient Wonders', href: '/tours/ancient', desc: 'Great Wall, Terracotta Army, Silk Road' },
+        { label: 'Family Tours', href: '/tours/family', desc: 'Pandas, science museums, kid-paced' },
+        { label: 'Custom Journeys', href: '/tours/custom', desc: 'Multi-city grand tours & bespoke' },
+      ],
+    },
     { label: 'How It Works', href: '/how-it-works' },
     { label: 'Why Us', href: '/about' },
     { label: 'Contact', href: '/contact' },
