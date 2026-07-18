@@ -42,52 +42,82 @@ const landingContent = {
   experiences: {
     sections: [
       {
+        icon: '🍜',
         title: 'Food, markets & everyday streets',
-        desc: 'Guided walks through the wet markets, breakfast stalls, and back-alley noodle shops that locals actually use. Eat what residents eat, where they eat it.',
+        desc: 'Guided walks through the wet markets, breakfast stalls, and back-alley noodle shops that locals actually use. Eat what residents eat, where they eat it — not the English-menu version.',
       },
       {
+        icon: '🚶',
         title: 'Neighborhood discoveries',
-        desc: 'Half-day immersions in a single district — hutongs in Beijing, the French Concession in Shanghai, the art villages of Shenzhen. See the city like a local sees it.',
+        desc: 'Half-day immersions in a single district — hutongs in Beijing, the French Concession in Shanghai, the art villages of Shenzhen, the canal lanes of Suzhou. See the city the way a local sees it.',
       },
       {
+        icon: '🎨',
         title: 'Single-theme deep dives',
-        desc: 'A morning on calligraphy, an afternoon on tea, an evening on regional opera. Light-touch but substantive, led by a local host.',
+        desc: 'A morning on calligraphy, an afternoon on tea ceremony, an evening on Sichuan opera face-changing. Light-touch but substantive, led by a practitioner rather than a tour guide.',
+      },
+      {
+        icon: '☕',
+        title: 'Café & creative district trails',
+        desc: 'The new China few tourists see — third-wave coffee in Shanghai, design studios in Shenzhen’s OCT-LOFT, indie bookstores in Chengdu. For travelers who want the contemporary, not just the ancient.',
+      },
+      {
+        icon: '🌃',
+        title: 'Evening & night markets',
+        desc: 'The city after dark: Chengdu’s hotpot streets, Xi’an’s Muslim Quarter, Beijing’s ghost street (Gui Jie). We pick the right night, the right stalls, and translate the menu.',
       },
     ],
-    closing: 'Currently arranged by request in Beijing, Shanghai, Shenzhen, Chengdu, and Hangzhou. Tell us where you\'ll be and what you\'re curious about.',
+    closing: 'Currently arranged by request in Beijing, Shanghai, Shenzhen, Chengdu, Hangzhou, Xi\'an, and Guangzhou. Tell us where you\'ll be and what you\'re curious about — we shape a few authentic hours around your schedule.',
   },
   business: {
     sections: [
       {
-        title: 'Meetings & company visits',
-        desc: 'Factory tours, showroom visits, partner meetings. We coordinate scheduling, transport, and on-site interpretation so you can focus on the conversation.',
+        icon: '🏭',
+        title: 'Factory & showroom visits',
+        desc: 'Factory tours, showroom visits, partner meetings. We coordinate scheduling in advance, arrange transport, and provide on-site interpretation so you can focus on the conversation — not the logistics.',
       },
       {
-        title: 'Trade fairs & sourcing',
-        desc: 'Canton Fair (Guangzhou), Yiwu wholesale markets, Shenzhen electronics sourcing. We handle the logistics of moving through high-volume trade environments efficiently.',
+        icon: '🛍️',
+        title: 'Trade fairs & sourcing markets',
+        desc: 'Canton Fair (Guangzhou, April & October), Yiwu wholesale markets, Shenzhen Huaqiangbei electronics sourcing. We help you move through high-volume trade environments efficiently, without wasting days.',
       },
       {
-        title: 'Interpretation & coordination',
-        desc: 'Professional interpreters (technical and business), drivers, and a coordinator who keeps your schedule moving. We bridge the language and culture gap on the ground.',
+        icon: '🗣️',
+        title: 'Technical & business interpretation',
+        desc: 'Professional interpreters — technical, commercial, and industry-specific — plus drivers and a coordinator who keeps your schedule moving. We bridge the language and culture gap on the ground.',
       },
       {
+        icon: '🥢',
         title: 'Business meals & relationship time',
-        desc: 'Restaurants chosen for the right tone, menus arranged in advance, cultural context for toasts and seating. We make the meal work as hard as the meeting.',
+        desc: 'Restaurants chosen for the right tone, menus arranged in advance, cultural context for toasts, seating, and gift-giving. In China, the meal is part of the deal — we make it work as hard as the meeting.',
+      },
+      {
+        icon: '🚄',
+        title: 'Multi-city scheduling',
+        desc: 'Tight itineraries across Beijing, Shanghai, Shenzhen, Guangzhou in one trip? We handle the flights, high-speed rail, transfers, and hotels so you can hit four cities in five days without losing hours.',
+      },
+      {
+        icon: '🛡️',
+        title: 'Service boundary (important)',
+        desc: 'We coordinate the travel-side of business visits — transport, interpretation, meals, scheduling. We are NOT a sourcing agent, legal firm, investment adviser, or procurement service. For those, we\'ll refer you to licensed professionals.',
       },
     ],
-    closing: 'Tell us your city, timing, industry, group size, and what kind of schedule or local support you need. We are not a sourcing agent, legal firm, or investment adviser — but we coordinate the travel-side logistics of business visits end to end.',
+    closing: 'Tell us your city (or cities), timing, industry, group size, and what kind of schedule or local support you need. We\'ll come back within 24 hours with a plan and a quote.',
   },
   special: {
     sections: [
       {
+        icon: '🌳',
         title: 'Family return & roots visits',
         desc: 'For adoptees, diaspora families, and adult children returning to a parent\'s hometown. We help locate places, arrange translation, and pace the emotional weight of these trips.',
       },
       {
+        icon: '📷',
         title: 'Creative & portrait journeys',
         desc: 'Photography expeditions, engagement shoots in iconic settings, film-location visits. We handle permits, locations, and the logistics so you can create.',
       },
       {
+        icon: '💐',
         title: 'Milestones & personal occasions',
         desc: 'Anniversaries, birthdays, family reunions held in the country your family came from. Venues, meals, ceremonies, and memories arranged with care.',
       },
@@ -138,21 +168,21 @@ const landing = landingContent[categoryId];
   {!current.hasTours && landing && (
     <>
     <CategoryTabs active={categoryId} />
-    <section class="mx-auto max-w-4xl px-4 sm:px-6 py-16 sm:py-24">
-      <div class="space-y-10">
+    <section class="mx-auto max-w-6xl px-4 sm:px-6 py-16 sm:py-24">
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {landing.sections.map((section) => (
-          <div class="grid sm:grid-cols-[1fr] gap-3 pb-8 border-b border-ink-100">
-            <h2 class="font-display text-2xl text-ink-900">{section.title}</h2>
-            <p class="text-ink-500 leading-relaxed">{section.desc}</p>
+          <div class="rounded-2xl border border-ink-100 bg-white p-6 hover:border-vermilion-500/30 hover:shadow-lg transition-all duration-300 flex flex-col">
+            <div class="text-3xl mb-3">{section.icon}</div>
+            <h2 class="font-display text-xl text-ink-900 mb-2">{section.title}</h2>
+            <p class="text-sm text-ink-500 leading-relaxed flex-1">{section.desc}</p>
           </div>
         ))}
       </div>
 
-      <div class="mt-12 rounded-2xl bg-ink-50 p-6 sm:p-8">
-        <p class="text-ink-700 leading-relaxed">{landing.closing}</p>
-        <div class="mt-6">
-          <Button href="/contact" variant="primary" size="lg">Tell us what you need →</Button>
-        </div>
+      <div class="mt-12 rounded-2xl bg-gradient-to-br from-ink-900 to-ink-700 text-white p-8 sm:p-10">
+        <div class="font-display text-2xl mb-3">Ready when you are</div>
+        <p class="text-white/80 leading-relaxed mb-6">{landing.closing}</p>
+        <Button href="/contact" variant="onDark" size="lg">Tell us what you need →</Button>
       </div>
     </section>
     </>
