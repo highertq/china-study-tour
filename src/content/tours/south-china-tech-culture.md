@@ -1,7 +1,7 @@
 ---
 title: "South China Triangle: Guangzhou → Shenzhen → Hong Kong — 8 Days"
-seoTitle: "8-Day South China Study Tour: Guangzhou, Shenzhen, Hong Kong"
-seoDescription: "An 8-day South China study tour for international travelers. Guangzhou's maritime heritage, Shenzhen's tech revolution, and Hong Kong. The Greater Bay Area in depth. English guides. From $3,280."
+seoTitle: "8-Day South China Private Tour: Guangzhou, Shenzhen, Hong Kong"
+seoDescription: "An 8-day South China private journey for international travelers. Guangzhou's maritime heritage, Shenzhen's tech revolution, and Hong Kong. The Greater Bay Area in depth. English guides. From $3,280."
 shortDescription: "The Greater Bay Area in depth — 2,000 years of maritime trade, the world's most extreme tech miracle, and the global crossroads of Hong Kong."
 duration: 8
 cities: "Guangzhou · Shenzhen · Hong Kong"
@@ -60,9 +60,9 @@ The **Greater Bay Area** is the most economically dynamic region on earth right 
 - **Shenzhen** — 40 years from fishing village to global tech capital
 - **Hong Kong** — 180 years as the meeting point of East and West
 
-### Why this tour is uniquely powerful
+### Why this tour works
 
-These three cities sit within an hour of each other by high-speed rail, yet represent completely different eras and models. The arc from ancient port to colonial crossroads to AI robotics lab — all in eight days — is something no other region on earth offers.
+These three cities sit within an hour of each other by high-speed rail, yet each feels like a different country. Eight days is enough to understand why this corner of China became the most economically dynamic region on earth — and what that means for the rest of the world.
 
 ### The big picture
 

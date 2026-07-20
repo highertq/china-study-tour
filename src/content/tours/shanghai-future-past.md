@@ -1,8 +1,8 @@
 ---
 title: "Shanghai: Future & Past — 5 Days"
 seoTitle: "5-Day Shanghai Tour: Yangshan Automated Port, Robotaxi & Yu Garden"
-seoDescription: "A 5-day Shanghai study tour. Ride a driverless Robotaxi, see Yangshan — the world's largest automated port, plus the Bund, Yu Garden and Suzhou gardens. For international travelers. From $1,890."
-shortDescription: "Colonial Bund at dawn, autonomous vehicles by noon, the world's largest automated port by night. Shanghai is China's window to the future — and you can touch it."
+seoDescription: "A 5-day Shanghai private journey. Ride a driverless Robotaxi, see Yangshan — the world's largest automated port, plus the Bund, Yu Garden and Suzhou gardens. For international travelers. From $1,890."
+shortDescription: "Five days in China's most international city — the colonial Bund, classical Yu Garden, the world's largest automated port, and a ride in a driverless taxi. The Shanghai most visitors never scratch."
 duration: 5
 cities: "Shanghai · Suzhou"
 priceFrom: 1890
@@ -41,9 +41,9 @@ faqs:
     answer: "Absolutely. Many travelers combine this with our Beijing tour for a 12-day grand tour."
 ---
 
-## China's window to the future
+## A Shanghai most visitors miss
 
-Shanghai is where China prototypes tomorrow. In five days you'll see the colonial architecture of the Bund, the 400-year-old Yu Garden, and the world's most advanced automated port — all within reach.
+Shanghai is China's most international city — and the easiest entry point for first-time visitors. In five days you'll see the colonial Bund, the 400-year-old Yu Garden, and the world's most advanced automated port, plus ride in a driverless taxi. All within reach, all arranged by people who know the city.
 
 ### The tech you'll actually experience
 

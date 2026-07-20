@@ -1,7 +1,7 @@
 ---
 title: "Chengdu: Pandas, Bronze Mystery & Slow Life — 6 Days"
-seoTitle: "6-Day Chengdu Study Tour: Pandas, Sanxingdui & Sichuan Culture"
-seoDescription: "A 6-day Chengdu study tour for international travelers. Giant pandas, the 3,000-year-old Sanxingdui bronze mystery, and Sichuan's famous slow-paced lifestyle. English guides. From $2,180."
+seoTitle: "6-Day Chengdu Private Tour: Pandas, Sanxingdui & Sichuan Culture"
+seoDescription: "A 6-day Chengdu private journey for international travelers. Giant pandas, the 3,000-year-old Sanxingdui bronze mystery, and Sichuan's famous slow-paced lifestyle. English guides. From $2,180."
 shortDescription: "Giant pandas, a 3,000-year-old bronze civilization that shouldn't exist, and China's most beloved slow-life culture — all in relaxed, green Chengdu."
 duration: 6
 cities: "Chengdu"

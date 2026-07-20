@@ -1,7 +1,7 @@
 ---
 title: "Guizhou: The World's Largest Eye — 5 Days"
 seoTitle: "5-Day Guizhou Tour: FAST Telescope, Karst Caves & Miao Culture"
-seoDescription: "A 5-day Guizhou study tour. Stand beside FAST — the world's largest radio telescope (500m), explore karst cave systems, and meet Miao ethnic villages. Big science + wild nature. English guides. From $1,980."
+seoDescription: "A 5-day Guizhou private journey. Stand beside FAST — the world's largest radio telescope (500m), explore karst cave systems, and meet Miao ethnic villages. Big science + wild nature. English guides. From $1,980."
 shortDescription: "A 500-meter radio telescope built into a mountain, listening for signals from the edge of the universe. Plus China's most surreal karst landscape and Miao villages frozen in time."
 duration: 5
 cities: "Guiyang · Qiannan"

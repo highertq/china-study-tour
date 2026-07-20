@@ -1,7 +1,7 @@
 ---
 title: "Hainan Island: China's Tropical Tech Frontier — 6 Days"
-seoTitle: "6-Day Hainan Study Tour: Rainforest, Beaches & Free Trade Port"
-seoDescription: "A 6-day Hainan study tour for international travelers. Tropical rainforest, volcanic villages, Li ethnic culture, and China's massive new Free Trade Port. English guides. From $1,980."
+seoTitle: "6-Day Hainan Private Tour: Rainforest, Beaches & Free Trade Port"
+seoDescription: "A 6-day Hainan private journey for international travelers. Tropical rainforest, volcanic villages, Li ethnic culture, and China's massive new Free Trade Port. English guides. From $1,980."
 shortDescription: "China's Hawaii — tropical rainforest, volcanic villages, indigenous Li culture, and the largest Free Trade Port being built on the planet today."
 duration: 6
 cities: "Haikou · Sanya"

@@ -1,7 +1,7 @@
 ---
 title: "Shenzhen: The China Speed Story — 4 Days"
 seoTitle: "4-Day Shenzhen Tech Tour: DJI, BYD, Huawei & Huaqiangbei"
-seoDescription: "A 4-day Shenzhen tech study tour. Visit DJI's Sky City HQ, BYD's driverless SkyShuttle, Huawei's campus, and the Huaqiangbei electronics market. For international travelers. From $1,680."
+seoDescription: "A 4-day Shenzhen tech private journey. Visit DJI's Sky City HQ, BYD's driverless SkyShuttle, Huawei's campus, and the Huaqiangbei electronics market. For international travelers. From $1,680."
 shortDescription: "40 years ago a fishing village. Today: home to DJI, Tencent, Huawei and BYD. Visit the actual headquarters and factories where China's tech revolution was built."
 duration: 4
 cities: "Shenzhen"

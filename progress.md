@@ -6,7 +6,7 @@
 **线上地址**：https://china-study-tour.pages.dev
 **品牌名**：China Crossroads（中国十字路口）
 **技术栈**：Astro + Tailwind CSS v4 + Cloudflare Pages
-**最后更新**：2026-07-18（修复：WeChat 清理 + 表单禁用 + Header 遮挡/hover 不展开）
+**最后更新**：2026-07-18（品牌定位重构：从古今碰撞研学 → 专业权威入华旅游 IP）
 
 ---
 
@@ -126,6 +126,71 @@
 ## 🔄 进行中
 
 （暂无）
+
+---
+
+## 🔄 阶段 11：品牌定位重构（已完成 ✅）
+
+**背景**：用户判断"古今碰撞"受众太窄，决定升级为面向所有外国人的"专业、有态度、深度的入华旅游 IP"。
+
+**新定位三要素**：
+- 调性：专业权威派（不卖弄古今反差，像真正懂中国的本地专家）
+- 受众：泛外国游客（任何想真正了解中国的外国人）
+- 科技资源：重新包装为"独家渠道的证明之一"，不再当唯一主打
+
+**5 批次执行**：
+
+### 批次 1：全站锚点（site.config.js）
+- tagline：`A deeper way into China` → **`The professional way into China`**（从"深度"升级为"专业"，立权威）
+- subtitle：去掉"ancient wonders collide with tomorrow's technology"，改为三段式专业权威表达（本地团队 + 独家渠道 + 痛点解决）
+- description（SEO 全站锚点）：从"pair ancient wonders with technology"改为"professional China travel IP"框架，保留高搜索量词
+- 联动自动修复：Footer（引用 tagline）、BaseLayout meta、首页 Hero 副标题（引用 subtitle）
+
+### 批次 2：首页结构性重构
+- Hero H1：`A deeper way into China` → `The professional way into China`
+- "Why us" 4 张卡片：从"Ancient Meets Future"等改为专业权威向（Built by locals / Access you can't get alone / Language & logistics handled / Trusted HK base）
+- **删除「Two Chinas, one trip」古今对照板块** → 改造为「A country bigger than the headlines」6 维度展示（古代/现代都市/美食/自然/民族/科技），扩大受众
+- **改造「Things you can only see in China」科技专区**：保留 6 张科技卡内容（独家渠道证明），但标题从"The future, today / Things you can only see in China"改为"Access most travelers never get / What you can reach through us"
+- FAQ "this is our specialty" 软化为"these are real places, not stage sets"
+- 评价 ×3 占位改成不依赖古今对照的中性专业评价
+- 最终 CTA "study tour" → "private journey"
+
+### 批次 3：about 页品牌故事重写
+- SEO description：去掉"both ancient China and its technological future"
+- H1：`Built for travelers curious about the real China` → `Travel China with people who live here`
+- "Why we started this" 故事段重写：痛点从"只看到一个版本的中国"改为"外国人很难真正进入中国"（信息差+渠道壁垒），解决方案是"本地专业团队"
+
+### 批次 4：13 条 tour 路线
+- 全部 13 条 seoTitle/seoDescription 的 "Study Tour" → "Private Tour"（批量 sed 替换）
+- 6-7 条用古今框架的路线（beijing/grand-tour/hangzhou/xian/south-china/shanghai/guangzhou）的 shortDescription / thesis 段 / FAQ 改写
+  - beijing：删"ancient × tech pairing"双栏对照表，改"highlights across the week"
+  - grand-tour：删"two layers of civilization / thesis of this tour"，改"the full picture"
+  - hangzhou/xian/south-china：删"arc from...to..."、"past and future share"、"uniquely powerful"等框架词
+  - shanghai/guangzhou：shortDescription 改为不依赖"future/collision"的中性专业描述
+- 其余 6 条的"ancient"是历史事实描述，保留
+
+### 批次 5：分类页 + 目的地页 + how-it-works
+- content.config.js journeys description：去掉"pairs 5,000 years of civilization with technology"
+- destinations/index.astro description：去掉"pairs ancient wonders with technology"
+- how-it-works：2 处"ancient sites / ancient + tech"软化
+
+### SEO 关键词策略转变
+| 维度 | 旧 | 新 |
+|------|----|----|
+| 主词 | study tour / ancient meets tech | China travel / private China journeys / professional China guides |
+| 长尾 | Beijing study tour / tech tour | Beijing private tour / China travel guide / how to travel China |
+| 品牌锚 | 古今碰撞 | 专业、本地、独家渠道 |
+| 受众信号 | 科技/历史爱好者 | 所有想真正了解中国的外国人 |
+
+### 明确不改的
+- 域名 china-study-tour.pages.dev（等用户注册正式域名后统一改）
+- tour URL slug（避免外链失效）
+- 13 条路线的行程/亮点/FAQ 事实内容
+- 8 个目的地页的城市事实描述
+- Travel Help 实用指南（本就符合新定位）
+- 技术架构、组件、样式、部署
+
+**最终扫描**：全站零"study tour"残留（仅 1 处代码注释，用户不可见）。build 34 页面全部通过。
 
 ---
 

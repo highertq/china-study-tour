@@ -1,7 +1,7 @@
 ---
 title: "Beijing Ancient & Tech Wonders — 7 Days"
 seoTitle: "7-Day Beijing Tour: Great Wall, Forbidden City, Xiaomi Factory & Apollo"
-seoDescription: "A 7-day Beijing study tour for international travelers. Great Wall, Forbidden City, plus Xiaomi's car megafactory, Baidu's Apollo autonomous driving base, and AI labs. English guides. From $2,480."
+seoDescription: "A 7-day Beijing private journey for international travelers. Great Wall, Forbidden City, plus Xiaomi's car megafactory, Baidu's Apollo autonomous driving base, and AI labs. English guides. From $2,480."
 shortDescription: "Walk the Great Wall in the morning, step inside Xiaomi's robot-staffed car factory in the afternoon. The perfect collision of 600-year-old heritage and tomorrow's technology."
 duration: 7
 cities: "Beijing"
@@ -51,20 +51,20 @@ faqs:
     answer: "Hotels, all transfers, English guide, entrance fees, most meals, and all tech visits (factory, Apollo Park, Robotaxi). International flights are not included."
 ---
 
-## Where 600 years of history meets tomorrow
+## A Beijing most visitors never reach
 
-This is our signature Beijing experience. You'll stand on the Great Wall — built to keep the world out — and the same week walk into a Beijing factory where robots build cars, and ride a taxi with no driver. No other city on earth offers this contrast in a single week.
+This is our signature Beijing experience. You'll see the Great Wall and the Forbidden City — but also walk into a factory where robots build cars, and ride a taxi with no driver. These are the parts of Beijing most tour companies can't arrange, because they require the right local connections.
 
-### The ancient × tech pairing, day by day
+### Highlights across the week
 
-| Day | Ancient | Tech |
-|-----|---------|------|
-| 2 | Forbidden City (600 yrs) | — |
-| 3 | Great Wall (2,500 yrs) | — |
-| 4 | — | Xiaomi factory + Baidu Apollo |
-| 5 | — | Robotaxi ride + AI lab |
-| 6 | Temple of Heaven (600 yrs) | — |
+| Day | What you'll do |
+|-----|---------------|
+| 2 | Forbidden City — the 600-year-old imperial palace |
+| 3 | Great Wall (Mutianyu) — less crowded, with cable car and toboggan |
+| 4 | Xiaomi EV megafactory + Baidu Apollo autonomous driving base |
+| 5 | Driverless Robotaxi ride + AI research lab visit |
+| 6 | Temple of Heaven, tea ceremony, calligraphy |
 
 ### Who this is for
 
-International travelers curious about both China's ancient civilization and its rapid technological rise. Ideal for families, educators, and professionals in tech or history. The Robotaxi ride and the Xiaomi factory are the two moments travelers never forget.
+International travelers who want more than the postcard version of Beijing. Ideal for families, educators, and professionals — the Robotaxi ride and the Xiaomi factory are the two moments travelers never forget.

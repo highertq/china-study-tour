@@ -1,7 +1,7 @@
 ---
 title: "Grand Tour: Beijing → Xi'an → Shanghai — 12 Days"
 seoTitle: "12-Day China Grand Tour: Beijing, Xi'an, Shanghai (Ancient & Tech)"
-seoDescription: "The complete China study tour: 12 days across Beijing (Great Wall, Forbidden City, AI labs), Xi'an (Terracotta Army), and Shanghai (autonomous vehicles, smart port). English guides. From $4,880."
+seoDescription: "The complete China private journey: 12 days across Beijing (Great Wall, Forbidden City, AI labs), Xi'an (Terracotta Army), and Shanghai (autonomous vehicles, smart port). English guides. From $4,880."
 shortDescription: "The full China experience. The Great Wall, Terracotta Army, Forbidden City — plus AI labs, autonomous vehicles, and the world's largest smart port. Three cities, one civilization."
 duration: 12
 cities: "Beijing · Xi'an · Shanghai"
@@ -28,7 +28,7 @@ itinerary:
     details: "Visit a Beijing AI robotics lab and a smart manufacturing showcase."
   - day: 5
     title: "High-speed Rail to Xi'an"
-    details: "Bullet train across northern China (4-6 hours, a study tour highlight in itself). Evening arrival in Xi'an, Muslim Quarter food walk."
+    details: "Bullet train across northern China (4-6 hours, a private journey highlight in itself). Evening arrival in Xi'an, Muslim Quarter food walk."
   - day: 6
     title: "Terracotta Army"
     details: "Full morning at the Terracotta Warriors. Afternoon workshop on how they were made."
@@ -53,27 +53,27 @@ itinerary:
 
 faqs:
   - question: "Is 12 days too long?"
-    answer: "No. China is the size of the United States. Twelve days across three major cities is the minimum to do justice to both the ancient and modern sides. Most travelers wish they had longer."
+    answer: "No. China is the size of the United States. Twelve days across three major cities is the minimum to do it justice. Most travelers wish they had longer."
   - question: "How do we travel between cities?"
-    answer: "Beijing to Xi'an by high-speed rail (a study tour highlight — China's bullet trains are an experience in themselves). Xi'an to Shanghai by short flight. All transfers included."
+    answer: "Beijing to Xi'an by high-speed rail (a private journey highlight — China's bullet trains are an experience in themselves). Xi'an to Shanghai by short flight. All transfers included."
   - question: "Is this suitable for families with kids?"
-    answer: "Yes. The mix of ancient sites (kids love the Terracotta Army and Great Wall toboggan) and tech demos (robotics, autonomous vehicles) keeps children and adults equally engaged."
+    answer: "Yes. The variety keeps everyone engaged — kids love the Terracotta Army and the Great Wall toboggan, while the factory visits and driverless taxi ride fascinate adults. We pace it so neither group gets bored."
   - question: "What's the single most memorable moment?"
     answer: "Travelers consistently mention three: the first glimpse of the Terracotta Army pit, biking the Xi'an wall at sunset, and riding in a driverless car in Shanghai. The contrast between days 6 and 10 is the whole point of this tour."
 ---
 
 ## The complete China, in one trip
 
-If you have one chance to understand China — really understand it — this is the trip. **Three cities, twelve days, two layers of civilization.**
+If you have one chance to really understand China, this is the trip. **Three cities, twelve days, the full picture.**
 
 ### Why these three cities, in this order
 
-- **Beijing** — political and cultural heart. The Great Wall, the Forbidden City, and the AI labs that will define the next decade.
-- **Xi'an** — where China began. The Terracotta Army, the Silk Road's start, a 14th-century city wall you can bike.
-- **Shanghai** — China's window to the future. Colonial past, autonomous vehicles, the world's largest automated port.
+- **Beijing** — the political and cultural heart. The Great Wall, the Forbidden City, and the factories and labs defining China's next decade.
+- **Xi'an** — where Chinese civilization began. The Terracotta Army, the Silk Road's starting point, a 14th-century city wall you can bike.
+- **Shanghai** — China's global face. The colonial Bund, autonomous vehicles, the world's largest automated port.
 
-Between them: the bullet train, which is itself a study in how China moves at scale.
+Between them: the bullet train, which is itself an experience in how China moves at scale.
 
-### The thesis of this tour
+### Why this tour works
 
-You cannot understand modern China without seeing both halves. A traveler who sees only the Great Wall thinks China is a museum. A traveler who sees only the smart port thinks China is a tech dystopia. Both are wrong. This tour is built to show you why.
+Twelve days is the minimum to do China justice. Anything shorter and you're rushing. This pace lets each city breathe — and lets us build in the access (factory visits, driverless rides, local specialists) that turns a good trip into an unforgettable one.

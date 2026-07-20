@@ -1,7 +1,7 @@
 ---
 title: "Hangzhou: Silk, Tea & Alibaba — 4 Days"
-seoTitle: "4-Day Hangzhou Study Tour: West Lake, Silk, Tea & Alibaba"
-seoDescription: "A 4-day Hangzhou study tour for international travelers. UNESCO West Lake, 5,000-year-old Liangzhu jade civilization, Dragon Well tea fields, and Alibaba's home city. English guides. From $1,780."
+seoTitle: "4-Day Hangzhou Private Tour: West Lake, Silk, Tea & Alibaba"
+seoDescription: "A 4-day Hangzhou private journey for international travelers. UNESCO West Lake, 5,000-year-old Liangzhu jade civilization, Dragon Well tea fields, and Alibaba's home city. English guides. From $1,780."
 shortDescription: "Marco Polo's 'most beautiful city in the world' — West Lake, ancient silk, Dragon Well tea, and the birthplace of Alibaba and China's digital economy."
 duration: 4
 cities: "Hangzhou"
@@ -42,7 +42,7 @@ In the 13th century, Marco Polo visited Hangzhou and called it "the most beautif
 
 But Hangzhou is also the city that **built Alibaba**. The cashless payment you'll use throughout your China trip? Invented here. The e-commerce that reshaped global retail? Started in a Hangzhou apartment.
 
-### Where ancient meets digital
+### What makes this trip different
 
 In four days you'll see:
 
@@ -51,6 +51,6 @@ In four days you'll see:
 - **Liangzhu** — a 5,000-year-old jade civilization that predates writing
 - **The Alibaba district** — the urban laboratory where tomorrow's digital economy is being tested
 
-### Why Hangzhou is the perfect study tour
+### Why Hangzhou rewards the curious traveler
 
-It compresses the full arc of Chinese civilization — jade age to digital age — into a single, walkable, beautiful city.
+Hangzhou is walkable, beautiful, and rewards travelers who go beyond the obvious stops. Few foreign visitors make it here — which is exactly why it's worth your time.

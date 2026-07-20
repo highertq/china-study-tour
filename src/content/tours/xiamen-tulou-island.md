@@ -1,7 +1,7 @@
 ---
 title: "Xiamen & Fujian: Tulou Fortresses & Island Life — 5 Days"
-seoTitle: "5-Day Xiamen & Fujian Tulou Study Tour: Roundhouses & Gulangyu"
-seoDescription: "A 5-day Xiamen study tour for international travelers. UNESCO Tulou roundhouses, car-free Gulangyu Island, tea culture, and Fujian's maritime heritage. English guides. From $1,880."
+seoTitle: "5-Day Xiamen & Fujian Tulou Private Tour: Roundhouses & Gulangyu"
+seoDescription: "A 5-day Xiamen private journey for international travelers. UNESCO Tulou roundhouses, car-free Gulangyu Island, tea culture, and Fujian's maritime heritage. English guides. From $1,880."
 shortDescription: "Car-free Gulangyu Island, the bizarre and beautiful UNESCO Tulou roundhouses built by Hakka clans, and the slow island life of southeast China."
 duration: 5
 cities: "Xiamen · Yongding"

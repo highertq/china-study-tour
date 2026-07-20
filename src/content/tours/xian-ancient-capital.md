@@ -1,7 +1,7 @@
 ---
 title: "Xi'an: Ancient Capital & Aerospace Frontier — 5 Days"
-seoTitle: "5-Day Xi'an Study Tour: Terracotta Army, Tang Dynasty & Aerospace"
-seoDescription: "A 5-day Xi'an study tour for international travelers. The Terracotta Army, Tang Dynasty capital, ancient City Wall, plus China's aerospace research hub. English guides. From $2,080."
+seoTitle: "5-Day Xi'an Private Tour: Terracotta Army, Tang Dynasty & Aerospace"
+seoDescription: "A 5-day Xi'an private journey for international travelers. The Terracotta Army, Tang Dynasty capital, ancient City Wall, plus China's aerospace research hub. English guides. From $2,080."
 shortDescription: "China's ancient capital — home of the Terracotta Army, the start of the Silk Road, and today a hub of space and aerospace research."
 duration: 5
 cities: "Xi'an"
@@ -51,6 +51,6 @@ If Beijing is modern China's political center and Shanghai its business center, 
 - **Biking the City Wall** at sunset — 14 kilometers of perfect 14th-century fortification, the old city glowing inside, the new city outside.
 - **The Muslim Quarter** at night — a street food scene that exists because Arab and Persian merchants settled here along the Silk Road, 1,300 years ago.
 
-### The layer you don't expect
+### Modern Xi'an, beneath the surface
 
-Beneath the ancient surface, modern Xi'an is one of China's aerospace hubs. For travelers curious about both layers, this is a city where the past and the future genuinely share the same streets.
+Beyond the ancient sites, modern Xi'an is one of China's aerospace and research hubs. For travelers curious about what's happening in China today — not just centuries ago — there's more here than most guidebooks admit.

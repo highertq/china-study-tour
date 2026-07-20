@@ -5,15 +5,16 @@
 
 export const SITE = {
   // --- 基础信息 ---
-  // 品牌：China Crossroads（中国十字路口）—— 古老文明与未来科技的交汇点
+  // 品牌：China Crossroads —— 专业、有态度、深度的外国人入华旅游 IP
   name: 'China Crossroads',
   // 一句话价值主张（首页 Hero 也会用到）。这是你所有 SEO 内容的「锚点」。
-  tagline: 'A deeper way into China',
-  // 25-30 字内的副标题，解释你具体做什么
+  tagline: 'The professional way into China',
+  // 副标题：三段式专业权威表达（本地团队 + 独家渠道 + 痛点解决）
   subtitle:
-    'Private China journeys where ancient wonders collide with tomorrow’s technology — planned by people who live here, with access to the factories, labs, and local hosts you cannot easily arrange from abroad.',
+    'Private China journeys, designed by people who actually live here. Real access to factories, neighborhoods, and local hosts most foreign travelers never reach — with the logistics, payments, and language fully handled.',
+  // SEO 全站描述：保留高搜索量词（China travel/private journeys/English guides/Hong Kong registered）
   description:
-    'China Crossroads designs private China journeys that pair ancient wonders with the technology of tomorrow. The Great Wall and robot factories, the Terracotta Army and driverless taxis, all in one trip. Hong Kong registered, English-speaking guides, transparent pricing.',
+    'China Crossroads is a professional China travel service for international visitors. Private, locally-guided journeys with real access most travelers never reach — factories, hidden neighborhoods, English-speaking guides, transparent pricing. Hong Kong registered company.',
 
   // --- 域名（和 astro.config.mjs 保持一致）---
   url: 'https://china-study-tour.pages.dev',

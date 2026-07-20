@@ -1,8 +1,8 @@
 ---
 title: "Guangzhou: Maritime Silk Road to Greater Bay — 5 Days"
-seoTitle: "5-Day Guangzhou Study Tour: Maritime Silk Road & Greater Bay Tech"
-seoDescription: "A 5-day Guangzhou study tour for international travelers. 2,000-year-old maritime Silk Road heritage, Cantonese culture, plus Greater Bay Area smart-city tech. English guides. From $1,980."
-shortDescription: "China's oldest trading port, where merchant ships arrived 2,000 years ago, and today's Greater Bay Area megaregion is being engineered."
+seoTitle: "5-Day Guangzhou Private Tour: Maritime Silk Road & Greater Bay Tech"
+seoDescription: "A 5-day Guangzhou private journey for international travelers. 2,000-year-old maritime Silk Road heritage, Cantonese culture, plus Greater Bay Area smart-city tech. English guides. From $1,980."
+shortDescription: "Five days in China's oldest international port — 2,000 years of trading history, the real Cantonese food, and the Greater Bay Area tech corridor most foreigners never reach."
 duration: 5
 cities: "Guangzhou"
 priceFrom: 1980

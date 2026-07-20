@@ -1,7 +1,7 @@
 ---
 title: "Wenchang: Witness a Rocket Launch — 4 Days"
 seoTitle: "4-Day Wenchang Space Tour: Rocket Launch & Hainan Coast"
-seoDescription: "A 4-day Wenchang space study tour. Witness a Long March rocket launch from China's Cape Canaveral, tour the aerospace city, plus Hainan's tropical coast. For international travelers. From $2,280."
+seoDescription: "A 4-day Wenchang space private journey. Witness a Long March rocket launch from China's Cape Canaveral, tour the aerospace city, plus Hainan's tropical coast. For international travelers. From $2,280."
 shortDescription: "Stand at the viewing site as a Long March rocket thunders skyward from China's newest spaceport. Then explore the tropical coast and coconut forests of Hainan."
 duration: 4
 cities: "Wenchang · Haikou"

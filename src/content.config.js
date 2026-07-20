@@ -25,7 +25,7 @@ export const CATEGORIES = [
     name: 'Private Journeys',
     tagline: 'Multi-day China, built around you',
     description:
-      'Multi-day private journeys across China — one city or several, ancient or futuristic, family-paced or deep-dive. Every itinerary pairs 5,000 years of civilization with the technology being built today. Start from one of our sample routes, or design your own from a rough idea.',
+      'Multi-day private journeys across China — one city or several, family-paced or deep-dive. Designed by people who actually live here, with access to the factories, hidden neighborhoods, and local specialists most foreign travelers never reach. Start from one of our sample routes, or design your own from a rough idea.',
     order: 1,
     hasTours: true, // 有真实路线，直接展示
   },
