@@ -200,12 +200,12 @@ const categories = await getAllCategories();
       5. 科技冲击专区 —— 具体的、有名的、可查证的中国科技项目
          这是项目的灵魂：用真实项目让老外"哇"，而不是空话
       ============================================================ */}
-  <section class="bg-ink-900 text-white py-20 sm:py-28">
+  <section class="bg-ink-50 py-20 sm:py-28">
     <div class="mx-auto max-w-7xl px-4 sm:px-6">
       <div class="text-center max-w-2xl mx-auto mb-16">
-        <span class="text-bronze-500 font-medium text-sm uppercase tracking-wider">Access most travelers never get</span>
-        <h2 class="font-display text-3xl sm:text-4xl md:text-5xl mt-3">What you can reach through us</h2>
-        <p class="mt-4 text-white/60">
+        <span class="text-vermilion-600 font-medium text-sm uppercase tracking-wider">Access most travelers never get</span>
+        <h2 class="font-display text-3xl sm:text-4xl md:text-5xl text-ink-900 mt-3">What you can reach through us</h2>
+        <p class="mt-4 text-ink-500">
           These aren't tourist shows — they're real factories, real labs, real operations. The kind of access ordinary tour companies simply cannot arrange.
         </p>
       </div>
@@ -256,18 +256,19 @@ const categories = await getAllCategories();
             stat: '76-sec cycle',
           },
         ].map((item) => (
-          <div class="group rounded-2xl overflow-hidden bg-white/5 ring-1 ring-white/10 hover:ring-bronze-500/50 transition-all duration-500 hover:-translate-y-1">
+          <div class="group rounded-2xl overflow-hidden bg-white ring-1 ring-ink-100 hover:ring-vermilion-500/30 hover:shadow-xl transition-all duration-500 hover:-translate-y-1">
             <div class="aspect-[16/10] overflow-hidden relative">
               <img src={item.img} alt={item.title} loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-              <div class="absolute inset-0 bg-gradient-to-t from-ink-900/80 to-transparent"></div>
+              {/* 轻渐变只压住图片底部一小条，让 tag 标签可读，不破坏整体浅色 */}
+              <div class="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-black/30 to-transparent"></div>
               <span class="absolute top-3 left-3 liquid-glass rounded-full px-3 py-1 text-xs font-medium text-white">{item.tag}</span>
             </div>
             <div class="p-6">
-              <h3 class="font-display text-xl mb-2">{item.title}</h3>
-              <p class="text-sm text-white/60 leading-relaxed">{item.desc}</p>
-              <div class="mt-4 pt-4 border-t border-white/10 flex items-center justify-between">
-                <span class="font-display text-lg text-bronze-500">{item.stat}</span>
-                <span class="text-xs text-white/40">Real, visitable</span>
+              <h3 class="font-display text-xl text-ink-900 mb-2">{item.title}</h3>
+              <p class="text-sm text-ink-500 leading-relaxed">{item.desc}</p>
+              <div class="mt-4 pt-4 border-t border-ink-100 flex items-center justify-between">
+                <span class="font-display text-lg text-vermilion-600">{item.stat}</span>
+                <span class="text-xs text-ink-400">Real, visitable</span>
               </div>
             </div>
           </div>
@@ -275,8 +276,8 @@ const categories = await getAllCategories();
       </div>
 
       <div class="mt-12 text-center">
-        <p class="text-sm text-white/50 mb-5">These are integrated into specific itineraries — see which tour includes what.</p>
-        <Button href="/tours" variant="glassOnDark">See the tours →</Button>
+        <p class="text-sm text-ink-500 mb-5">These are integrated into specific itineraries — see which tour includes what.</p>
+        <Button href="/tours" variant="primary">See the tours →</Button>
       </div>
     </div>
   </section>
