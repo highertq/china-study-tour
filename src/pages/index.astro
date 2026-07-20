@@ -47,8 +47,9 @@ const heroSlides = [
           data-index={i}
         >
           <img src={slide.src} alt={slide.label} class="w-full h-full object-cover animate-ken-burns" />
-          {/* 暗色渐变遮罩，让前景文字可读 */}
-          <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/70"></div>
+          {/* 双层渐变：上方轻压（留呼吸感）+ 下方重压（让文字区高对比可读） */}
+          <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/90"></div>
+          <div class="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black via-black/80 to-transparent"></div>
         </div>
       ))}
     </div>
@@ -57,37 +58,40 @@ const heroSlides = [
     <div class="relative z-10 flex flex-col min-h-screen px-4 sm:px-6">
       <Header transparent />
 
-      {/* Hero 主体内容，居中 */}
-      <div class="flex-1 flex flex-col items-center justify-center text-center text-white pt-20 pb-12">
-        {/* 徽章：液态玻璃 */}
-        <div class="liquid-glass rounded-full px-5 py-2 text-xs sm:text-sm text-white/90 mb-8 animate-rise" style="animation-delay: 100ms">
+      {/* Hero 主体：文字下沉到底部，上方留大图呼吸（学竞品"大图压字"电影感） */}
+      <div class="flex-1 flex flex-col items-center justify-end text-center text-white pt-32 pb-16 sm:pb-20">
+        {/* 徽章 */}
+        <div class="liquid-glass rounded-full px-5 py-2 text-xs sm:text-sm text-white/90 mb-7 animate-rise drop-shadow-lg" style="animation-delay: 100ms">
           ✦ Private China journeys · Hong Kong based
         </div>
 
-        {/* H1：Instrument Serif 衬线体大标题（专业权威主张） */}
-        <h1 class="font-display text-4xl sm:text-6xl md:text-7xl lg:text-[5.5rem] leading-[1.05] max-w-5xl animate-rise" style="animation-delay: 300ms">
+        {/* H1：加文字阴影，任何背景图上都清晰 */}
+        <h1 class="font-display text-4xl sm:text-6xl md:text-7xl lg:text-[5.5rem] leading-[1.05] max-w-5xl animate-rise drop-shadow-[0_2px_20px_rgba(0,0,0,0.6)]" style="animation-delay: 300ms">
           The professional<br />
           way into <em class="text-vermilion-500 not-italic">China</em>.
         </h1>
 
-        <p class="mt-8 text-base sm:text-lg text-white/75 max-w-xl leading-relaxed animate-rise" style="animation-delay: 500ms">
+        <p class="mt-7 text-base sm:text-lg text-white/85 max-w-xl leading-relaxed animate-rise drop-shadow-md" style="animation-delay: 500ms">
           {SITE.subtitle}
         </p>
 
         {/* CTA 按钮 */}
-        <div class="mt-10 flex flex-wrap gap-4 justify-center animate-rise" style="animation-delay: 700ms">
+        <div class="mt-9 flex flex-wrap gap-4 justify-center animate-rise" style="animation-delay: 700ms">
           <Button href="/tours" variant="primary" size="lg">Explore Tours →</Button>
           <Button href="/contact" variant="glassOnDark" size="lg">Plan My Trip</Button>
         </div>
 
-        {/* 背景图切换器：4 个标签 */}
-        <div class="mt-16 flex flex-wrap gap-1 sm:gap-2 justify-center animate-rise" style="animation-delay: 900ms">
+        {/* 精致进度条切换器（替代原来的标签按钮） */}
+        <div class="mt-14 flex gap-3 justify-center items-center animate-rise" style="animation-delay: 900ms">
           {heroSlides.map((slide, i) => (
             <button
-              class:list={["hero-tab px-4 py-2 text-xs sm:text-sm rounded-full transition-all duration-300", i === 0 ? 'bg-white text-ink-900' : 'text-white/60 hover:text-white']}
+              class:list={["hero-tab group flex flex-col items-center gap-2 transition-opacity", i === 0 ? 'opacity-100' : 'opacity-50 hover:opacity-80']}
               data-target={i}
+              aria-label={`Show ${slide.label}`}
             >
-              {slide.label}
+              {/* 进度条：激活态变长 + 朱红高亮 */}
+              <span class:list={["h-0.5 transition-all duration-500 rounded-full", i === 0 ? 'w-12 bg-vermilion-500' : 'w-6 bg-white/50 group-hover:bg-white/80']}></span>
+              <span class:list={["text-xs transition-colors", i === 0 ? 'text-white' : 'text-white/60']}>{slide.label}</span>
             </button>
           ))}
         </div>
@@ -247,7 +251,7 @@ const heroSlides = [
       <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {[
           {
-            img: '/images/tours/tech-robotaxi.jpg',
+            img: '/images/tours/tech-self-driving.jpg',
             tag: 'Autonomous',
             title: 'Ride a driverless taxi',
             desc: 'Hail a Robotaxi with no safety driver on public streets. Companies like Pony.ai and WeRide operate paid rides in Beijing, Guangzhou and Shenzhen — something still illegal in most of the West.',
@@ -514,12 +518,23 @@ const heroSlides = [
 
   function show(index: number) {
     if (index === current) return;
+    // 切换背景图淡入淡出
     slides[current]?.classList.replace('opacity-100', 'opacity-0');
     slides[index]?.classList.replace('opacity-0', 'opacity-100');
-    tabs[current]?.classList.remove('bg-white', 'text-ink-900');
-    tabs[current]?.classList.add('text-white/60');
-    tabs[index]?.classList.add('bg-white', 'text-ink-900');
-    tabs[index]?.classList.remove('text-white/60');
+    // 切换进度条样式：激活态 = 长条 + 朱红；非激活 = 短条 + 半透白
+    const oldBar = tabs[current]?.querySelector('span:first-child');
+    const oldLabel = tabs[current]?.querySelector('span:last-child');
+    const newBar = tabs[index]?.querySelector('span:first-child');
+    const newLabel = tabs[index]?.querySelector('span:last-child');
+    oldBar?.classList.replace('w-12', 'w-6');
+    oldBar?.classList.replace('bg-vermilion-500', 'bg-white/50');
+    oldLabel?.classList.replace('text-white', 'text-white/60');
+    newBar?.classList.replace('w-6', 'w-12');
+    newBar?.classList.replace('bg-white/50', 'bg-vermilion-500');
+    newLabel?.classList.replace('text-white/60', 'text-white');
+    // tab 整体透明度
+    tabs[current]?.classList.replace('opacity-100', 'opacity-50');
+    tabs[index]?.classList.replace('opacity-50', 'opacity-100');
     current = index;
   }
 
