@@ -20,14 +20,6 @@ import { getFeaturedTours, getAllCategories } from '../lib/tours';
 
 const featuredTours = await getFeaturedTours(3);
 const categories = await getAllCategories();
-
-// Hero 背景图轮播：4 个标志性场景（古文明 × 科技）
-const heroSlides = [
-  { src: '/images/tours/beijing-ancient-tech.jpg', label: 'The Great Wall', sub: 'Beijing' },
-  { src: '/images/tours/xian-ancient-capital.jpg', label: 'Terracotta Army', sub: 'Xi’an' },
-  { src: '/images/tours/shanghai-future-past.jpg', label: 'The Bund', sub: 'Shanghai' },
-  { src: '/images/tours/chengdu-pandas-sanxingdui.jpg', label: 'Giant Pandas', sub: 'Chengdu' },
-];
 ---
 
 <BaseLayout
@@ -36,29 +28,23 @@ const heroSlides = [
   hero={true}
 >
   {/* ============================================================
-      1. 电影感 Hero —— 背景图交叉淡入淡出 + 衬线体大标题
+      1. Hero —— 单张大图 + 文字压图（学竞品 goinsidechina 简洁风格）
+         不再轮播，一张定调。文字下沉到底部留大图呼吸。
       ============================================================ */}
   <section class="relative w-full min-h-screen overflow-hidden bg-black">
-    {/* 背景图层：4 张图绝对定位，opacity 切换 */}
+    {/* 单张背景大图 */}
     <div class="absolute inset-0">
-      {heroSlides.map((slide, i) => (
-        <div
-          class:list={["hero-slide absolute inset-0 transition-opacity duration-[1500ms] ease-in-out", i === 0 ? 'opacity-100' : 'opacity-0']}
-          data-index={i}
-        >
-          <img src={slide.src} alt={slide.label} class="w-full h-full object-cover animate-ken-burns" />
-          {/* 双层渐变：上方轻压（留呼吸感）+ 下方重压（让文字区高对比可读） */}
-          <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/90"></div>
-          <div class="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black via-black/80 to-transparent"></div>
-        </div>
-      ))}
+      <img src="/images/tours/tourist.jpg" alt="Travelers experiencing China" class="w-full h-full object-cover" />
+      {/* 双层渐变：上方轻压（留呼吸感）+ 下方重压（让文字区高对比可读） */}
+      <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/10 to-black/95"></div>
+      <div class="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black via-black/85 to-transparent"></div>
     </div>
 
     {/* 内容层 */}
     <div class="relative z-10 flex flex-col min-h-screen px-4 sm:px-6">
       <Header transparent />
 
-      {/* Hero 主体：文字下沉到底部，上方留大图呼吸（学竞品"大图压字"电影感） */}
+      {/* Hero 主体：文字下沉到底部，上方留大图呼吸 */}
       <div class="flex-1 flex flex-col items-center justify-end text-center text-white pt-32 pb-16 sm:pb-20">
         {/* 徽章 */}
         <div class="liquid-glass rounded-full px-5 py-2 text-xs sm:text-sm text-white/90 mb-7 animate-rise drop-shadow-lg" style="animation-delay: 100ms">
@@ -79,21 +65,6 @@ const heroSlides = [
         <div class="mt-9 flex flex-wrap gap-4 justify-center animate-rise" style="animation-delay: 700ms">
           <Button href="/tours" variant="primary" size="lg">Explore Tours →</Button>
           <Button href="/contact" variant="glassOnDark" size="lg">Plan My Trip</Button>
-        </div>
-
-        {/* 精致进度条切换器（替代原来的标签按钮） */}
-        <div class="mt-14 flex gap-3 justify-center items-center animate-rise" style="animation-delay: 900ms">
-          {heroSlides.map((slide, i) => (
-            <button
-              class:list={["hero-tab group flex flex-col items-center gap-2 transition-opacity", i === 0 ? 'opacity-100' : 'opacity-50 hover:opacity-80']}
-              data-target={i}
-              aria-label={`Show ${slide.label}`}
-            >
-              {/* 进度条：激活态变长 + 朱红高亮 */}
-              <span class:list={["h-0.5 transition-all duration-500 rounded-full", i === 0 ? 'w-12 bg-vermilion-500' : 'w-6 bg-white/50 group-hover:bg-white/80']}></span>
-              <span class:list={["text-xs transition-colors", i === 0 ? 'text-white' : 'text-white/60']}>{slide.label}</span>
-            </button>
-          ))}
         </div>
       </div>
 
@@ -503,60 +474,3 @@ const heroSlides = [
 
   <Footer />
 </BaseLayout>
-
-<script>
-  // ============================================================
-  // Hero 背景图轮播逻辑
-  // - 每 5 秒自动切换到下一张
-  // - 点击底部标签手动切换
-  // - 切换时 1500ms 交叉淡入淡出
-  // ============================================================
-  const slides = document.querySelectorAll('.hero-slide');
-  const tabs = document.querySelectorAll('.hero-tab');
-  let current = 0;
-  let timer: ReturnType<typeof setInterval>;
-
-  function show(index: number) {
-    if (index === current) return;
-    // 切换背景图淡入淡出
-    slides[current]?.classList.replace('opacity-100', 'opacity-0');
-    slides[index]?.classList.replace('opacity-0', 'opacity-100');
-    // 切换进度条样式：激活态 = 长条 + 朱红；非激活 = 短条 + 半透白
-    const oldBar = tabs[current]?.querySelector('span:first-child');
-    const oldLabel = tabs[current]?.querySelector('span:last-child');
-    const newBar = tabs[index]?.querySelector('span:first-child');
-    const newLabel = tabs[index]?.querySelector('span:last-child');
-    oldBar?.classList.replace('w-12', 'w-6');
-    oldBar?.classList.replace('bg-vermilion-500', 'bg-white/50');
-    oldLabel?.classList.replace('text-white', 'text-white/60');
-    newBar?.classList.replace('w-6', 'w-12');
-    newBar?.classList.replace('bg-white/50', 'bg-vermilion-500');
-    newLabel?.classList.replace('text-white/60', 'text-white');
-    // tab 整体透明度
-    tabs[current]?.classList.replace('opacity-100', 'opacity-50');
-    tabs[index]?.classList.replace('opacity-50', 'opacity-100');
-    current = index;
-  }
-
-  function next() {
-    show((current + 1) % slides.length);
-  }
-
-  function startAuto() {
-    clearInterval(timer);
-    timer = setInterval(next, 5000);
-  }
-
-  tabs.forEach((tab) => {
-    tab.addEventListener('click', () => {
-      const target = Number(tab.dataset.target);
-      show(target);
-      startAuto(); // 手动切换后重置计时器
-    });
-  });
-
-  startAuto();
-</script>
-
-  startAuto();
-</script>
